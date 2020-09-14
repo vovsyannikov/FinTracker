@@ -16,4 +16,16 @@ class Entry: Object {
     @objc dynamic var cost = 0.0
     @objc dynamic var date = Date()
     @objc dynamic var category = ""
+    
+    func costToString() -> String{
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = " "
+        formatter.numberStyle = .decimal
+        
+        
+        let costNumber = NSNumber(value: cost >= 0 ? cost : -cost)
+        let result = formatter.string(from: costNumber)
+        
+        return result!
+    }
 }

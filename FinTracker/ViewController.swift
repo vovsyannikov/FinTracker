@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         entries[1].name = "Тестовая покупка"
         entries[1].cost = -5_000
         entries[1].date = Date(timeIntervalSinceNow: 10800)
+        
     }
 
 }
@@ -43,7 +44,7 @@ extension ViewController: UITableViewDataSource{
         let entry = entries[indexPath.row]
         
         cell.nameLabel.text = entry.name
-        cell.sumLabel.text = "\(entry.cost)"
+        cell.sumLabel.text = entry.costToString()
         
         switch isPositive(for: entry.cost) {
         case true: do {
