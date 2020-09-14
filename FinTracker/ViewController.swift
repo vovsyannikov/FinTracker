@@ -25,19 +25,35 @@ class ViewController: UIViewController {
         
         entries[1].name = "Тестовая покупка"
         entries[1].cost = -5_000
-        entries[1].date = Date(timeIntervalSinceNow: 10800)
+        entries[1].date = Date(timeIntervalSince1970: 0)
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let cell = sender as? EntryTableViewCell, let _ = entriesTableView.indexPath(for: cell){
+        if let cell = sender as? EntryTableViewCell, let index = entriesTableView.indexPath(for: cell){
             if let vc = segue.destination as? EntryDetailViewController, segue.identifier == "EntryDetail" {
-                vc.cost = cell.sumLabel.text!
-                vc.name = cell.nameLabel.text!
-                vc.sign = cell.signImageView.image!
+
+                let entry = entries[index.row]
+                
+                vc.signIndex = entry.isPositive() ? 0 : 1
+                vc.name = entry.name
+                vc.cost = costToString(from: entry.cost)
+                vc.date = entry.date
                 vc.color = cell.sumLabel.textColor
             }
         }
+    }
+    
+    func costToString(from cost: Double) -> String{
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = " "
+        formatter.numberStyle = .decimal
+        
+        
+        let costNumber = NSNumber(value: cost >= 0 ? cost : -cost)
+        let result = formatter.string(from: costNumber)
+        
+        return result!
     }
 
 }
@@ -50,18 +66,12 @@ extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Entry") as! EntryTableViewCell
         
-        func isPositive(for num: Double) -> Bool {
-            return num >= 0
-        }
-        
-        
-        
         let entry = entries[indexPath.row]
         
         cell.nameLabel.text = entry.name
-        cell.sumLabel.text = entry.costToString()
+        cell.sumLabel.text = costToString(from: entry.cost)
         
-        switch isPositive(for: entry.cost) {
+        switch entry.isPositive() {
         case true: do {
             cell.signImageView.image = UIImage(systemName: "plus.circle")
             cell.signImageView.tintColor = colors.green

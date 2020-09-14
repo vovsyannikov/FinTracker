@@ -69,12 +69,12 @@
 		3CC233AB250F68970084FE1B /* FinTracker */ = {
 			isa = PBXGroup;
 			children = (
-				3C4232B8250F92AF0050A00E /* EntryDetailViewController.swift */,
 				3CC233C0250F7AD00084FE1B /* EntryTableViewCell.swift */,
 				3CC233AC250F68970084FE1B /* AppDelegate.swift */,
 				3CC233AE250F68970084FE1B /* SceneDelegate.swift */,
 				3CC233B0250F68970084FE1B /* ViewController.swift */,
 				3CC233C2250F7F1A0084FE1B /* Entry.swift */,
+				3C4232B8250F92AF0050A00E /* EntryDetailViewController.swift */,
 				3CC233B2250F68970084FE1B /* Main.storyboard */,
 				3CC233B5250F689A0084FE1B /* Assets.xcassets */,
 				3CC233B7250F689A0084FE1B /* LaunchScreen.storyboard */,
