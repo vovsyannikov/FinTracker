@@ -82,7 +82,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Сводка" id="e6d-tR-fJO"/>
+                    <navigationItem key="navigationItem" title="Сводка" id="e6d-tR-fJO">
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="Kgl-ms-6b7">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TiV-TL-mbD">
+                                <rect key="frame" x="284" y="0.0" width="110" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="plus" catalog="system"/>
+                                <connections>
+                                    <segue destination="FnT-nB-I93" kind="presentation" identifier="CreateEntry" id="5Rh-G3-DiI"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="entriesTableView" destination="e8J-IH-yT8" id="Xly-Wa-ogD"/>
                     </connections>
@@ -181,6 +192,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yQZ-0R-dB4"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ar6-ve-3N8"/>
                     <connections>
                         <outlet property="costTextField" destination="8Wg-iK-aDA" id="6tF-cf-Vzm"/>
                         <outlet property="datePicker" destination="9CA-OP-C18" id="cKI-qu-cFa"/>
@@ -232,9 +244,13 @@
             <point key="canvasLocation" x="1104" y="841"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="5Rh-G3-DiI"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="minus.circle" catalog="system" width="128" height="121"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>

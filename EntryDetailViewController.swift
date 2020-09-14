@@ -37,7 +37,7 @@ class EntryDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(cellIndex)
+        print(isNew)
         
         // Изменение заголовка карточки записи на Приход/Расход
         changeTitleLabel(to: signIndex)
@@ -79,7 +79,6 @@ class EntryDetailViewController: UIViewController {
         changeTitleLabel(to: signSegmentedControl.selectedSegmentIndex)
     }
     @IBAction func saveCell(_ sender: Any) {
-        
         let entry = Entry()
         
         func stringToCost(from str: String) -> Double{
@@ -103,11 +102,12 @@ class EntryDetailViewController: UIViewController {
         entry.cost = stringToCost(from: costTextField.text!)
         entry.date = datePicker.date
         
-        
-        print(entry)
+        print(isNew, entry)
         
         switch isNew {
-        case true: delegate?.createCell(for: entry)
+        case true: do {
+            print("Sending...")
+            delegate?.createCell(for: entry)}
         case false: delegate?.updateCell(for: entry, at: cellIndex)
         }
         dismiss(animated: true, completion: nil)

@@ -16,18 +16,22 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        entries.append(Entry())
-        entries.append(Entry())
         
-        entries[0].name = "Тестовое пополнение"
-        entries[0].cost = 5_000.5
-        entries[0].date = Date(timeIntervalSinceNow: 10800)
+        func testInit(){
+            entries.append(Entry())
+            entries.append(Entry())
+            
+            entries[0].name = "Тестовое пополнение"
+            entries[0].cost = 5_000.5
+            entries[0].date = Date(timeIntervalSinceNow: 10800)
+            
+            
+            entries[1].name = "Тестовая покупка"
+            entries[1].cost = -5_000
+            entries[1].date = Date(timeIntervalSince1970: 0)
+        }
         
-        
-        entries[1].name = "Тестовая покупка"
-        entries[1].cost = -5_000
-        entries[1].date = Date(timeIntervalSince1970: 0)
-        
+        testInit()
         
     }
     
@@ -47,8 +51,14 @@ class ViewController: UIViewController {
                 vc.color = cell.sumLabel.textColor
             }
         }
+        if let vc = segue.destination as? EntryDetailViewController, segue.identifier == "CreateEntry" {
+            vc.delegate = self
+            
+            vc.isNew = true
+        }
     }
     
+    // Функция преобразования числа в строку
     func costToString(from cost: Double) -> String{
         let formatter = NumberFormatter()
         formatter.groupingSeparator = " "
@@ -63,15 +73,17 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: EntryDetailDelegate {
+    // Обновление имеющихся ячеек
     func updateCell(for entry: Entry, at index: Int) {
         print(entries[index])
         entries[index] = entry
         print(entries[index])
         entriesTableView.reloadData()
     }
-    
+    // Создание новой ячейки
     func createCell(for entry: Entry) {
         entries.append(entry)
+        print(entry)
         entriesTableView.reloadData()
     }
 }
