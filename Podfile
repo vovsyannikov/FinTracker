@@ -4,6 +4,6 @@ target 'FinTracker' do
   use_frameworks!
 
 pod 'Charts'
-pod 'Realm'
+pod 'RealmSwift'
 
 end
