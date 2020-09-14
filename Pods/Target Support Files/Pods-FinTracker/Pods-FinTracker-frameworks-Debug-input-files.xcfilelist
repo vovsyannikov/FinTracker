@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-FinTracker/Pods-FinTracker-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
+${BUILT_PRODUCTS_DIR}/Realm/Realm.framework
