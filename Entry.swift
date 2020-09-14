@@ -9,13 +9,20 @@
 import Foundation
 import RealmSwift
 
+enum EntryType: String {
+    case income = "Приход"
+    case outcome = "Расход"
+}
+
 class Entry: Object {
-    override var description: String {"\(name): \(cost) \(date)"}
+    override var description: String {"\(name): \(type.rawValue) \(cost) \(date)"}
     
     @objc dynamic var name = ""
     @objc dynamic var cost = 0.0
     @objc dynamic var date = Date()
     @objc dynamic var category = ""
+    var type: EntryType { isPositive() ? .income : .outcome}
+    @objc dynamic var typeString: String { type.rawValue }
     
     func isPositive() -> Bool {
         return cost >= 0

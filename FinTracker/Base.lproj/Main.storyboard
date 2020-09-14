@@ -146,6 +146,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMH-pJ-EcD">
+                                <rect key="frame" x="168.5" y="738" width="77" height="30"/>
+                                <state key="normal" title="Сохранить"/>
+                                <connections>
+                                    <action selector="saveCell:" destination="FnT-nB-I93" eventType="touchUpInside" id="d0d-sV-sCK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -157,6 +164,7 @@
                             <constraint firstItem="OYi-tI-GHM" firstAttribute="top" secondItem="yQZ-0R-dB4" secondAttribute="top" constant="50" id="MYx-Rh-wzy"/>
                             <constraint firstItem="zgD-ZN-3xR" firstAttribute="top" secondItem="8Wg-iK-aDA" secondAttribute="bottom" constant="70" id="Uza-aM-69o"/>
                             <constraint firstItem="yQZ-0R-dB4" firstAttribute="trailing" secondItem="8Wg-iK-aDA" secondAttribute="trailing" constant="20" id="WUx-MY-PeI"/>
+                            <constraint firstItem="vMH-pJ-EcD" firstAttribute="centerX" secondItem="Fn8-jQ-RfZ" secondAttribute="centerX" id="YpC-M3-p9Z"/>
                             <constraint firstItem="9CA-OP-C18" firstAttribute="top" secondItem="8Wg-iK-aDA" secondAttribute="bottom" constant="100" id="bvy-7u-kqT"/>
                             <constraint firstItem="9CA-OP-C18" firstAttribute="top" secondItem="zgD-ZN-3xR" secondAttribute="bottom" constant="10" id="h2B-DB-WrX"/>
                             <constraint firstItem="8Wg-iK-aDA" firstAttribute="top" secondItem="NYN-eY-8WF" secondAttribute="bottom" constant="20" id="iX5-4O-tYn"/>
@@ -167,6 +175,7 @@
                             <constraint firstAttribute="trailing" secondItem="9CA-OP-C18" secondAttribute="trailing" constant="10" id="rR5-PH-Wqe"/>
                             <constraint firstItem="zgD-ZN-3xR" firstAttribute="centerX" secondItem="Fn8-jQ-RfZ" secondAttribute="centerX" id="u1c-ON-lfJ"/>
                             <constraint firstItem="NYN-eY-8WF" firstAttribute="centerY" secondItem="aiV-CW-DZa" secondAttribute="centerY" id="uWM-DJ-h4t"/>
+                            <constraint firstItem="yQZ-0R-dB4" firstAttribute="bottom" secondItem="vMH-pJ-EcD" secondAttribute="bottom" constant="40" id="ve8-7A-O9u"/>
                             <constraint firstItem="OYi-tI-GHM" firstAttribute="centerX" secondItem="Fn8-jQ-RfZ" secondAttribute="centerX" id="yRd-d2-8iC"/>
                             <constraint firstItem="GQk-7w-4t8" firstAttribute="top" secondItem="aiV-CW-DZa" secondAttribute="bottom" constant="20" id="zVO-bw-St3"/>
                         </constraints>
