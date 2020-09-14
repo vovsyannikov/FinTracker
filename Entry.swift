@@ -7,8 +7,13 @@
 //
 
 import Foundation
+import RealmSwift
 
-
-class Entry{
+class Entry: Object {
+    override var description: String {"\(name): \(cost) \(date)"}
     
+    @objc dynamic var name = ""
+    @objc dynamic var cost = 0.0
+    @objc dynamic var date = Date()
+    @objc dynamic var category = ""
 }

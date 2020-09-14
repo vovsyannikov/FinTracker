@@ -15,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e8J-IH-yT8">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e8J-IH-yT8">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
@@ -33,16 +33,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pL-VA-V3j">
-                                                    <rect key="frame" x="75" y="26" width="75" height="23"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="75" id="aVp-Vk-euP"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="75" y="16" width="44.5" height="43"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVB-5u-Oth">
-                                                    <rect key="frame" x="165" y="26" width="214" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVB-5u-Oth">
+                                                    <rect key="frame" x="134.5" y="16" width="244.5" height="39.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -51,14 +48,14 @@
                                             <constraints>
                                                 <constraint firstItem="xVB-5u-Oth" firstAttribute="height" secondItem="7pL-VA-V3j" secondAttribute="height" multiplier="0.913043" id="5AG-sk-vre"/>
                                                 <constraint firstItem="cnJ-5s-MUE" firstAttribute="top" secondItem="wbs-mU-R5b" secondAttribute="top" constant="15" id="FZa-s1-Vuf"/>
-                                                <constraint firstItem="7pL-VA-V3j" firstAttribute="top" secondItem="wbs-mU-R5b" secondAttribute="topMargin" constant="15" id="IE7-u7-sWa"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="7pL-VA-V3j" secondAttribute="bottom" constant="15" id="IoQ-Y1-RET"/>
+                                                <constraint firstItem="7pL-VA-V3j" firstAttribute="top" secondItem="wbs-mU-R5b" secondAttribute="topMargin" constant="5" id="IE7-u7-sWa"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="7pL-VA-V3j" secondAttribute="bottom" constant="5" id="IoQ-Y1-RET"/>
                                                 <constraint firstItem="xVB-5u-Oth" firstAttribute="leading" secondItem="7pL-VA-V3j" secondAttribute="trailing" constant="15" id="K4p-QN-d6b"/>
-                                                <constraint firstItem="xVB-5u-Oth" firstAttribute="top" secondItem="wbs-mU-R5b" secondAttribute="topMargin" constant="15" id="U7I-hY-rbb"/>
+                                                <constraint firstItem="xVB-5u-Oth" firstAttribute="top" secondItem="wbs-mU-R5b" secondAttribute="topMargin" constant="5" id="U7I-hY-rbb"/>
                                                 <constraint firstAttribute="bottom" secondItem="cnJ-5s-MUE" secondAttribute="bottom" constant="15" id="Ya8-w0-VHy"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="xVB-5u-Oth" secondAttribute="trailing" constant="15" id="dmz-0b-hL8"/>
                                                 <constraint firstItem="cnJ-5s-MUE" firstAttribute="leading" secondItem="wbs-mU-R5b" secondAttribute="leading" constant="15" id="lUk-tC-U0E"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="xVB-5u-Oth" secondAttribute="bottom" constant="15" id="qr8-2q-Gdl"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="xVB-5u-Oth" secondAttribute="bottom" constant="5" id="qr8-2q-Gdl"/>
                                                 <constraint firstItem="7pL-VA-V3j" firstAttribute="leading" secondItem="cnJ-5s-MUE" secondAttribute="trailing" constant="15" id="qt4-ny-HTM"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -96,6 +93,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="0Vw-Lv-M44" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AIG-l8-Aab">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
