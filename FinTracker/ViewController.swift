@@ -75,15 +75,12 @@ class ViewController: UIViewController {
 extension ViewController: EntryDetailDelegate {
     // Обновление имеющихся ячеек
     func updateCell(for entry: Entry, at index: Int) {
-        print(entries[index])
         entries[index] = entry
-        print(entries[index])
         entriesTableView.reloadData()
     }
     // Создание новой ячейки
     func createCell(for entry: Entry) {
         entries.append(entry)
-        print(entry)
         entriesTableView.reloadData()
     }
 }
@@ -115,6 +112,25 @@ extension ViewController: UITableViewDataSource{
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+        if editingStyle == .delete{
+            var entryIndexToDelete: Int?
+            for (index, _) in entries.enumerated() {
+                if index == indexPath.row {
+                    entryIndexToDelete = index
+                }
+            }
+            
+            entries.remove(at: entryIndexToDelete!)
+            
+            self.entriesTableView.beginUpdates()
+            self.entriesTableView.deleteRows(at: [indexPath], with: .automatic)
+            self.entriesTableView.endUpdates()
+            
+            self.entriesTableView.reloadData()
+        }
     }
     
 }

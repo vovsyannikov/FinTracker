@@ -37,8 +37,6 @@ class EntryDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(isNew)
-        
         // Изменение заголовка карточки записи на Приход/Расход
         changeTitleLabel(to: signIndex)
         
@@ -102,12 +100,8 @@ class EntryDetailViewController: UIViewController {
         entry.cost = stringToCost(from: costTextField.text!)
         entry.date = datePicker.date
         
-        print(isNew, entry)
-        
         switch isNew {
-        case true: do {
-            print("Sending...")
-            delegate?.createCell(for: entry)}
+        case true: delegate?.createCell(for: entry)
         case false: delegate?.updateCell(for: entry, at: cellIndex)
         }
         dismiss(animated: true, completion: nil)
