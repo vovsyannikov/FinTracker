@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
     
     var entries = [Entry]()
+    let colors: (green: UIColor, red: UIColor) = (green: UIColor(red: 0, green: 0.5, blue: 0, alpha: 1), red: UIColor.red)
+    @IBOutlet weak var entriesTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,17 @@ class ViewController: UIViewController {
         entries[1].cost = -5_000
         entries[1].date = Date(timeIntervalSinceNow: 10800)
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let cell = sender as? EntryTableViewCell, let _ = entriesTableView.indexPath(for: cell){
+            if let vc = segue.destination as? EntryDetailViewController, segue.identifier == "EntryDetail" {
+                vc.cost = cell.sumLabel.text!
+                vc.name = cell.nameLabel.text!
+                vc.sign = cell.signImageView.image!
+                vc.color = cell.sumLabel.textColor
+            }
+        }
     }
 
 }
@@ -41,6 +54,8 @@ extension ViewController: UITableViewDataSource{
             return num >= 0
         }
         
+        
+        
         let entry = entries[indexPath.row]
         
         cell.nameLabel.text = entry.name
@@ -49,13 +64,13 @@ extension ViewController: UITableViewDataSource{
         switch isPositive(for: entry.cost) {
         case true: do {
             cell.signImageView.image = UIImage(systemName: "plus.circle")
-            cell.signImageView.tintColor = UIColor.green
-            cell.sumLabel.textColor = UIColor.green
+            cell.signImageView.tintColor = colors.green
+            cell.sumLabel.textColor = colors.green
             }
         case false: do {
             cell.signImageView.image = UIImage(systemName: "minus.circle")
-            cell.signImageView.tintColor = UIColor.red
-            cell.sumLabel.textColor = UIColor.red
+            cell.signImageView.tintColor = colors.red
+            cell.sumLabel.textColor = colors.red
             }
         }
         
