@@ -18,9 +18,30 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e8J-IH-yT8">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="iH6-EP-RGP">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hP4-hg-nD2">
+                                            <rect key="frame" x="377" y="18" width="22" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="hP4-hg-nD2" secondAttribute="height" multiplier="1:1" id="Nqd-x1-Z5P"/>
+                                            </constraints>
+                                            <state key="normal" image="plus" catalog="system"/>
+                                            <connections>
+                                                <segue destination="FnT-nB-I93" kind="presentation" identifier="CreateEntry" id="cpH-VS-IHl"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <constraints>
+                                        <constraint firstItem="hP4-hg-nD2" firstAttribute="centerY" secondItem="iH6-EP-RGP" secondAttribute="centerY" id="9xR-8Q-dpf"/>
+                                        <constraint firstAttribute="trailing" secondItem="hP4-hg-nD2" secondAttribute="trailing" constant="15" id="icU-9t-CUv"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Entry" rowHeight="75" id="ldZ-kd-mKI" customClass="EntryTableViewCell" customModule="FinTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="75"/>
+                                        <rect key="frame" x="0.0" y="86" width="414" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ldZ-kd-mKI" id="wbs-mU-R5b">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
@@ -82,18 +103,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Сводка" id="e6d-tR-fJO">
-                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="Kgl-ms-6b7">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TiV-TL-mbD">
-                                <rect key="frame" x="284" y="0.0" width="110" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="plus" catalog="system"/>
-                                <connections>
-                                    <segue destination="FnT-nB-I93" kind="presentation" identifier="CreateEntry" id="5Rh-G3-DiI"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Сводка" id="e6d-tR-fJO"/>
                     <connections>
                         <outlet property="entriesTableView" destination="e8J-IH-yT8" id="Xly-Wa-ogD"/>
                     </connections>
@@ -124,6 +134,7 @@
                                     <segment title="" image="plus.circle" catalog="system"/>
                                     <segment title="" image="minus.circle" catalog="system"/>
                                 </segments>
+                                <color key="selectedSegmentTintColor" red="0.10000000000000001" green="1" blue="0.10000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="changeEntryType:" destination="FnT-nB-I93" eventType="valueChanged" id="9Mv-o2-Rfv"/>
                                 </connections>
@@ -149,10 +160,10 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="9CA-OP-C18">
-                                <rect key="frame" x="10" y="311" width="394" height="216"/>
+                                <rect key="frame" x="10" y="317.5" width="394" height="216"/>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgD-ZN-3xR">
-                                <rect key="frame" x="181.5" y="281" width="51" height="20"/>
+                                <rect key="frame" x="181.5" y="281" width="51" height="26.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -176,7 +187,6 @@
                             <constraint firstItem="zgD-ZN-3xR" firstAttribute="top" secondItem="8Wg-iK-aDA" secondAttribute="bottom" constant="70" id="Uza-aM-69o"/>
                             <constraint firstItem="yQZ-0R-dB4" firstAttribute="trailing" secondItem="8Wg-iK-aDA" secondAttribute="trailing" constant="20" id="WUx-MY-PeI"/>
                             <constraint firstItem="vMH-pJ-EcD" firstAttribute="centerX" secondItem="Fn8-jQ-RfZ" secondAttribute="centerX" id="YpC-M3-p9Z"/>
-                            <constraint firstItem="9CA-OP-C18" firstAttribute="top" secondItem="8Wg-iK-aDA" secondAttribute="bottom" constant="100" id="bvy-7u-kqT"/>
                             <constraint firstItem="9CA-OP-C18" firstAttribute="top" secondItem="zgD-ZN-3xR" secondAttribute="bottom" constant="10" id="h2B-DB-WrX"/>
                             <constraint firstItem="8Wg-iK-aDA" firstAttribute="top" secondItem="NYN-eY-8WF" secondAttribute="bottom" constant="20" id="iX5-4O-tYn"/>
                             <constraint firstItem="yQZ-0R-dB4" firstAttribute="trailing" secondItem="NYN-eY-8WF" secondAttribute="trailing" constant="20" id="khQ-hy-aDL"/>
@@ -245,7 +255,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5Rh-G3-DiI"/>
+        <segue reference="cpH-VS-IHl"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="list.bullet" catalog="system" width="128" height="88"/>

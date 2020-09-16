@@ -27,4 +27,5 @@ class Entry: Object {
     func isPositive() -> Bool {
         return cost >= 0
     }
+    
 }

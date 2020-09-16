@@ -37,6 +37,8 @@ class EntryDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         // Изменение заголовка карточки записи на Приход/Расход
         changeTitleLabel(to: signIndex)
         
@@ -51,6 +53,8 @@ class EntryDetailViewController: UIViewController {
         // Установка правильной русской локализации datePicker
         datePicker.locale = Locale.init(identifier: "ru")
         datePicker.date = date
+        datePicker.datePickerMode = .date
+        datePicker.maximumDate = Date(timeIntervalSinceNow: 10800)
         
     }
     
