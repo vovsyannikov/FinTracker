@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     let colors: (green: UIColor, red: UIColor) = (green: UIColor(red: 0, green: 0.5, blue: 0, alpha: 1), red: UIColor.red)
     @IBOutlet weak var entriesTableView: UITableView!
     
+    // MARK: Realm funcs
     func writeToRealm(from entry: Entry, at index: Int = -1){
         if index == -1{
             entries.append(entry)
@@ -60,6 +61,7 @@ class ViewController: UIViewController {
         writeToRealm(from: newEntry)
     }
     
+    // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,6 +77,9 @@ class ViewController: UIViewController {
             entries[1].name = "Тестовая покупка"
             entries[1].cost = -5_000
             entries[1].date = Date(timeIntervalSince1970: 0)
+            
+            writeToRealm(from: entries[0])
+            writeToRealm(from: entries[1])
         }
         
 //        testInit()
@@ -111,9 +116,9 @@ class ViewController: UIViewController {
         formatter.numberStyle = .decimal
         
         let costNumber = NSNumber(value: cost >= 0 ? cost : -cost)
-        let result = formatter.string(from: costNumber)! + " ₽"
+        let result = formatter.string(from: costNumber)
         
-        return result
+        return result!
     }
 
 }
@@ -172,7 +177,7 @@ extension ViewController: UITableViewDataSource{
         print(entry)
         
         cell.nameLabel.text = entry.name
-        cell.sumLabel.text = costToString(from: entry.cost)
+        cell.sumLabel.text = costToString(from: entry.cost) + " ₽"
         
         switch entry.type {
         case .income: do {

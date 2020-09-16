@@ -37,8 +37,6 @@ class EntryDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         // Изменение заголовка карточки записи на Приход/Расход
         changeTitleLabel(to: signIndex)
         
