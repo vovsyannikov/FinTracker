@@ -11,19 +11,20 @@ import Charts
 
 class ChartsViewController: UIViewController {
 
-    var entries = ViewController.shared.readFromRealm()
+    var entries: [Entry] = []
     
     let pieChart = PieChartView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
+    override func viewDidAppear(_ animated: Bool) {
+        entries = ViewController.shared.readFromRealm()
+        updateChart()
+    }
+    
+    func updateChart(){
         pieChart.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.width)
         pieChart.center = view.center
         view.addSubview(pieChart)
@@ -46,7 +47,6 @@ class ChartsViewController: UIViewController {
         setOfEntries.colors = ChartColorTemplates.joyful()
         let data = PieChartData(dataSet: setOfEntries)
         pieChart.data = data
-        
     }
     
 
