@@ -15,7 +15,9 @@ class ViewController: UIViewController {
     private let realm = try! Realm()
     
     var entries = [Entry]()
-    let colors: (green: UIColor, red: UIColor) = (green: UIColor(red: 0, green: 0.5, blue: 0, alpha: 1), red: UIColor.red)
+    let colors: (green: UIColor, red: UIColor) = (
+        green: UIColor(red: 0, green: 0.5, blue: 0, alpha: 1),
+        red: UIColor(red: 0.75, green: 0, blue: 0, alpha: 1))
     @IBOutlet weak var entriesTableView: UITableView!
     
     // MARK: Realm funcs

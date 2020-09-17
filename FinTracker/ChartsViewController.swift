@@ -43,8 +43,11 @@ class ChartsViewController: UIViewController {
         pieChartEntries.append(ChartDataEntry(x: incomeSum, y: incomeSum))
         pieChartEntries.append(ChartDataEntry(x: outcomeSum, y: outcomeSum))
         
-        let setOfEntries = PieChartDataSet(entries: pieChartEntries)
-        setOfEntries.colors = ChartColorTemplates.joyful()
+        let setOfEntries = PieChartDataSet(entries: pieChartEntries, label: "+/-")
+        setOfEntries.colors = [
+            ViewController.shared.colors.green,
+            ViewController.shared.colors.red
+        ]
         let data = PieChartData(dataSet: setOfEntries)
         pieChart.data = data
     }
