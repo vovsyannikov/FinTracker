@@ -75,11 +75,13 @@ class ViewController: UIViewController {
             entries[0].name = "Тестовое пополнение"
             entries[0].cost = 5_000.5
             entries[0].date = Date(timeIntervalSinceNow: 10800)
+            entries[0].category = "Дом"
 
 
             entries[1].name = "Тестовая покупка"
             entries[1].cost = -5_000
             entries[1].date = Date(timeIntervalSince1970: 0)
+            entries[1].category = "Транспорт"
             
             writeToRealm(from: entries[0])
             writeToRealm(from: entries[1])
@@ -105,6 +107,7 @@ class ViewController: UIViewController {
                 vc.cost = costToString(from: entry.cost)
                 vc.date = entry.date
                 vc.color = cell.sumLabel.textColor
+                vc.buttonName = entry.category
             }
         }
         if let vc = segue.destination as? EntryDetailViewController, segue.identifier == "CreateEntry" {
@@ -212,6 +215,10 @@ extension ViewController: UITableViewDataSource{
             
             self.entriesTableView.reloadData()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        entriesTableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

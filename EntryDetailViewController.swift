@@ -23,6 +23,7 @@ class EntryDetailViewController: UIViewController {
     var color = UIColor()
     var date = Date()
     var cellIndex = 0
+    var buttonName = "Другое"
     var isNew = false
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -31,6 +32,8 @@ class EntryDetailViewController: UIViewController {
     
     @IBOutlet weak var signSegmentedControl: UISegmentedControl!
     @IBOutlet weak var costTextField: UITextField!
+    
+    @IBOutlet weak var categoryButton: UIButton!
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
@@ -54,7 +57,12 @@ class EntryDetailViewController: UIViewController {
         datePicker.datePickerMode = .date
         datePicker.maximumDate = Date(timeIntervalSinceNow: 10800)
         
+        categoryButton.setTitle(" \(buttonName)", for: .normal)
+        categoryButton.layer.borderWidth = 0.5
+        categoryButton.layer.borderColor = UIColor.gray.cgColor
+        categoryButton.layer.cornerRadius = 5
     }
+    
     
     func changeTitleLabel(to titleIndex: Int){
         switch titleIndex {
@@ -101,6 +109,7 @@ class EntryDetailViewController: UIViewController {
         entry.name = nameTextField.text!
         entry.cost = stringToCost(from: costTextField.text!)
         entry.date = datePicker.date
+        entry.category = categoryButton.title(for: .normal)!
         
         switch isNew {
         case true: delegate?.createCell(for: entry)

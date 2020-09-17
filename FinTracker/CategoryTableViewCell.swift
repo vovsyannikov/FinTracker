@@ -1,18 +1,17 @@
 //
-//  EntryTableViewCell.swift
+//  CategoryTableViewCell.swift
 //  FinTracker
 //
-//  Created by Виталий Овсянников on 14.09.2020.
+//  Created by Виталий Овсянников on 17.09.2020.
 //  Copyright © 2020 Виталий Овсянников. All rights reserved.
 //
 
 import UIKit
 
-class EntryTableViewCell: UITableViewCell {
-
+class CategoryTableViewCell: UITableViewCell {
+    @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var sumLabel: UILabel!
-    @IBOutlet weak var signImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,6 +19,7 @@ class EntryTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
         // Configure the view for the selected state
     }
 
