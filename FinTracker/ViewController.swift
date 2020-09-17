@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 
 class ViewController: UIViewController {
+    static var shared = ViewController()
     
     private let realm = try! Realm()
     

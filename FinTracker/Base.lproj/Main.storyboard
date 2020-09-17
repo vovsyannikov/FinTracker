@@ -235,21 +235,21 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="109.82142857142857"/>
         </scene>
-        <!--View Controller-->
+        <!--График средств-->
         <scene sceneID="dFn-eP-AaH">
             <objects>
-                <viewController id="jsT-MG-Vno" sceneMemberID="viewController">
+                <viewController id="jsT-MG-Vno" customClass="ChartsViewController" customModule="FinTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ro6-vn-bjv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="CuE-7Y-thp"/>
                     </view>
-                    <navigationItem key="navigationItem" id="fu6-D3-IOq"/>
+                    <navigationItem key="navigationItem" title="График средств" id="fu6-D3-IOq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VYP-ld-l5k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2013.0434782608697" y="109.82142857142857"/>
+            <point key="canvasLocation" x="1887" y="110"/>
         </scene>
         <!--Сводка-->
         <scene sceneID="ltI-gQ-aKv">
@@ -270,11 +270,11 @@
             </objects>
             <point key="canvasLocation" x="1104" y="841"/>
         </scene>
-        <!--Item-->
+        <!--График-->
         <scene sceneID="8h8-Cc-0i6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UD5-l3-wiq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="zgh-Ye-aBe"/>
+                    <tabBarItem key="tabBarItem" title="График" image="chart.pie" catalog="system" id="zgh-Ye-aBe"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="9lO-zP-Nsh">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -287,13 +287,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NZH-H4-77U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1102.8985507246377" y="109.82142857142857"/>
+            <point key="canvasLocation" x="1103" y="110"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="cpH-VS-IHl"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="chart.pie" catalog="system" width="128" height="121"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="minus.circle" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
