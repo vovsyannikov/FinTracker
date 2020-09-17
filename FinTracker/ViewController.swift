@@ -87,6 +87,7 @@ class ViewController: UIViewController {
         print(entries)
     }
     
+    // MARK: prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cell = sender as? EntryTableViewCell, let index = entriesTableView.indexPath(for: cell){
             if let vc = segue.destination as? EntryDetailViewController, segue.identifier == "EntryDetail" {
@@ -123,6 +124,7 @@ class ViewController: UIViewController {
 
 }
 
+// MARK: EntryDetailDelegate
 extension ViewController: EntryDetailDelegate {
     // Обновление имеющихся ячеек
     func updateCell(for entry: Entry, at index: Int) {
@@ -136,6 +138,7 @@ extension ViewController: EntryDetailDelegate {
     }
 }
 
+// MARK: TODO - Sections
 extension ViewController: UITableViewDataSource{
 //    func numberOfSections(in tableView: UITableView) -> Int {
 //        var numOfSections = 0

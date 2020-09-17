@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0B87BBA66747A69184B9452D /* Pods_FinTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26202E08A3EEB41CE5E0D62A /* Pods_FinTracker.framework */; };
 		3C4232B9250F92AF0050A00E /* EntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4232B8250F92AF0050A00E /* EntryDetailViewController.swift */; };
+		3C8D6D022513800B003462F4 /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8D6D012513800B003462F4 /* ChartsViewController.swift */; };
 		3CC233AD250F68970084FE1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC233AC250F68970084FE1B /* AppDelegate.swift */; };
 		3CC233AF250F68970084FE1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC233AE250F68970084FE1B /* SceneDelegate.swift */; };
 		3CC233B1250F68970084FE1B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC233B0250F68970084FE1B /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 		26202E08A3EEB41CE5E0D62A /* Pods_FinTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8C21BFC5AD11AE2601D76D /* Pods-FinTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinTracker.release.xcconfig"; path = "Target Support Files/Pods-FinTracker/Pods-FinTracker.release.xcconfig"; sourceTree = "<group>"; };
 		3C4232B8250F92AF0050A00E /* EntryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailViewController.swift; sourceTree = SOURCE_ROOT; };
+		3C8D6D012513800B003462F4 /* ChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
 		3CC233A9250F68970084FE1B /* FinTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CC233AC250F68970084FE1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CC233AE250F68970084FE1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				3CC233AC250F68970084FE1B /* AppDelegate.swift */,
 				3CC233AE250F68970084FE1B /* SceneDelegate.swift */,
 				3CC233B0250F68970084FE1B /* ViewController.swift */,
+				3C8D6D012513800B003462F4 /* ChartsViewController.swift */,
 				3CC233C2250F7F1A0084FE1B /* Entry.swift */,
 				3C4232B8250F92AF0050A00E /* EntryDetailViewController.swift */,
 				3CC233B2250F68970084FE1B /* Main.storyboard */,
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CC233C3250F7F1A0084FE1B /* Entry.swift in Sources */,
+				3C8D6D022513800B003462F4 /* ChartsViewController.swift in Sources */,
 				3CC233C1250F7AD00084FE1B /* EntryTableViewCell.swift in Sources */,
 				3CC233B1250F68970084FE1B /* ViewController.swift in Sources */,
 				3CC233AD250F68970084FE1B /* AppDelegate.swift in Sources */,
