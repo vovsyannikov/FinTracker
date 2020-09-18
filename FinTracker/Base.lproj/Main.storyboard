@@ -112,7 +112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1886.9565217391305" y="840.40178571428567"/>
+            <point key="canvasLocation" x="1887" y="477"/>
         </scene>
         <!--Entry Detail View Controller-->
         <scene sceneID="yMN-IO-aXV">
@@ -197,6 +197,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <segue destination="Ksu-LJ-yQM" kind="show" identifier="CategorySelection" id="4Qt-hp-FFo"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgD-ZN-3xR">
                                 <rect key="frame" x="20" y="333" width="71.5" height="17"/>
@@ -251,7 +254,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lQM-pI-bGl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2673.913043478261" y="839.73214285714278"/>
+            <point key="canvasLocation" x="2674" y="477"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="AvF-mK-csy">
@@ -288,18 +291,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VYP-ld-l5k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1887" y="110"/>
+            <point key="canvasLocation" x="1887" y="-252"/>
         </scene>
         <!--Категории-->
         <scene sceneID="lLZ-Dg-iW1">
             <objects>
                 <viewController id="Ksu-LJ-yQM" customClass="CategoryViewController" customModule="FinTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gc9-u1-nyb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vis-ok-UPW">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Cpy-2R-jMY">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
@@ -344,6 +347,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Ksu-LJ-yQM" id="yyT-O7-uaQ"/>
+                                    <outlet property="delegate" destination="Ksu-LJ-yQM" id="hwY-50-ggm"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -357,10 +361,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Категории" id="efp-xf-BpB"/>
+                    <connections>
+                        <outlet property="categoriesTableView" destination="vis-ok-UPW" id="3GC-SN-wzC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tLf-ic-kIj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1886.9565217391305" y="-646.20535714285711"/>
+            <point key="canvasLocation" x="4535" y="477"/>
         </scene>
         <!--Сводка-->
         <scene sceneID="ltI-gQ-aKv">
@@ -379,7 +386,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JhI-X4-vfd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1104" y="841"/>
+            <point key="canvasLocation" x="1103" y="477"/>
         </scene>
         <!--График-->
         <scene sceneID="8h8-Cc-0i6">
@@ -398,7 +405,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NZH-H4-77U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1103" y="110"/>
+            <point key="canvasLocation" x="1103" y="-252"/>
         </scene>
         <!--Категории-->
         <scene sceneID="mZx-3z-gRe">
@@ -417,10 +424,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qnW-b8-NE2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1103" y="-646"/>
+            <point key="canvasLocation" x="3512" y="110"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="4Qt-hp-FFo"/>
         <segue reference="Rgb-45-Zrr"/>
     </inferredMetricsTieBreakers>
     <resources>

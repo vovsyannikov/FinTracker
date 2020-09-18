@@ -8,12 +8,19 @@
 
 import UIKit
 
+protocol CategoryDelegate {
+    func getCategory(from cat: String)
+}
+
 class CategoryViewController: UIViewController {
     static let shared = CategoryViewController()
     
     var userCategories: FinanceCategory = [:]
     
+    var choosingCategory = false
+    var delegate: CategoryDelegate?
     
+    @IBOutlet weak var categoriesTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,29 +29,15 @@ class CategoryViewController: UIViewController {
     
 }
 
-extension CategoryViewController: UITableViewDataSource {
+extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return defaultCategories.count + userCategories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Category") as! CategoryTableViewCell
-        func getCategoryName(from index: Int) -> EntryType {
-            var result: EntryType?
-            switch index {
-            case 0: result = .income
-            case 1: result = .house
-            case 2: result = .transport
-            case 3: result = .food
-            case 4: result = .entertainment
-            case 5: result = .electronics
-            case 6: result = .other
-            default: break
-            }
-            return result!
-        }
         
-        let categoryName = getCategoryName(from: indexPath.row)
+        let categoryName = getEntryType(from: indexPath.row)
         let categoryImage = defaultCategories[categoryName]
         
         cell.nameLabel.text = categoryName.rawValue
@@ -57,5 +50,11 @@ extension CategoryViewController: UITableViewDataSource {
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        let category = getEntryType(from: indexPath.row)
+        print(category)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

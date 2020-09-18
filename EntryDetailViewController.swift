@@ -118,6 +118,7 @@ class EntryDetailViewController: UIViewController {
         changeSelectedSegmentColor(to: signSegmentedControl.selectedSegmentIndex)
         changeTitleLabel(to: signSegmentedControl.selectedSegmentIndex)
     }
+    
     @IBAction func saveCell(_ sender: Any) {
         let entry = Entry()
         
@@ -150,4 +151,16 @@ class EntryDetailViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? CategoryViewController, segue.identifier == "CategorySelection" {
+            vc.delegate = self
+        }
+    }
+    
+}
+
+extension EntryDetailViewController: CategoryDelegate{
+    func getCategory(from cat: String) {
+        print("Got \(cat)")
+    }
 }
