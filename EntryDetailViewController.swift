@@ -25,6 +25,7 @@ class EntryDetailViewController: UIViewController {
     var cellIndex = 0
     var buttonName = "Другое"
     var isNew = false
+
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -37,6 +38,7 @@ class EntryDetailViewController: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    @IBOutlet weak var pickerView: UIPickerView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,15 +54,17 @@ class EntryDetailViewController: UIViewController {
         costTextField.text = cost
         
         // Установка правильной русской локализации datePicker
-        datePicker.locale = Locale.init(identifier: "ru")
+        datePicker.locale = Locale(identifier: "ru")
         datePicker.date = date
         datePicker.datePickerMode = .date
         datePicker.maximumDate = Date(timeIntervalSinceNow: 10800)
         
+        // Установка кнопки категории
         categoryButton.setTitle(" \(buttonName)", for: .normal)
         categoryButton.layer.borderWidth = 0.5
         categoryButton.layer.borderColor = UIColor.gray.cgColor
         categoryButton.layer.cornerRadius = 5
+        
     }
     
     
