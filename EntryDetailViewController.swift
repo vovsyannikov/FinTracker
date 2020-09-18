@@ -25,7 +25,7 @@ class EntryDetailViewController: UIViewController {
     var cellIndex = 0
     var buttonName = "Другое"
     var isNew = false
-
+    
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -65,14 +65,20 @@ class EntryDetailViewController: UIViewController {
         categoryButton.layer.borderColor = UIColor.gray.cgColor
         categoryButton.layer.cornerRadius = 5
         
-//        changeSelectedSegmentColor(to: signIndex)
+        changeSelectedSegmentColor(to: signIndex)
     }
     
     func underlinedText(from input: String) -> NSAttributedString {
         let underlineAttribute = [NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
-        var resultingString = NSAttributedString(string: input, attributes: underlineAttribute)
+        let resultingString = NSAttributedString(string: input, attributes: underlineAttribute)
         
         return resultingString
+    }
+    
+    func fixedText(from input: String) -> NSAttributedString {
+        let result: NSAttributedString = NSAttributedString(string: input)
+        
+        return result
     }
     
     func changeTitleLabel(to titleIndex: Int){
@@ -85,19 +91,22 @@ class EntryDetailViewController: UIViewController {
     }
     
     func changeSelectedSegmentColor(to colorIndex: Int){
-        let defaultText = [
-            "   \(defaultCategories[0].name)",
-            "   \(defaultCategories.last!.name)"
-        ]
+        let incomeString = "   \(defaultCategories[0].name)"
+        let outcomeString = buttonName == defaultCategories[0].name
+            ? "   \(defaultCategories.last!.name)"
+            : "   \(buttonName)"
+        
         switch colorIndex {
         case 0: do{
             signSegmentedControl.selectedSegmentTintColor = myColors.green
-            categoryButton.setAttributedTitle(underlinedText(from: defaultText[0]), for: .normal)
+            categoryButton.setAttributedTitle(fixedText(from: incomeString), for: .normal)
+            categoryButton.tintColor = UIColor.black
             categoryButton.isEnabled = false
         }
         case 1: do {
             signSegmentedControl.selectedSegmentTintColor = myColors.red
-            categoryButton.setAttributedTitle(underlinedText(from: defaultText[1]), for: .normal)
+            categoryButton.setAttributedTitle(underlinedText(from: outcomeString), for: .normal)
+            categoryButton.tintColor = UIColor.systemBlue
             categoryButton.isEnabled = true
         }
         default:
@@ -132,7 +141,7 @@ class EntryDetailViewController: UIViewController {
         entry.name = nameTextField.text!
         entry.cost = stringToCost(from: costTextField.text!)
         entry.date = datePicker.date
-        entry.category = "\(categoryButton.attributedTitle(for: .normal)!)"
+        entry.category = buttonName
         
         switch isNew {
         case true: delegate?.createCell(for: entry)

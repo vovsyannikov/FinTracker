@@ -186,6 +186,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="Edw-hT-T9a"/>
                                 </constraints>
+                                <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Выбрать... &gt;">
