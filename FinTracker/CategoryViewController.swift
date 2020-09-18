@@ -65,9 +65,7 @@ class CategoryViewController: UIViewController {
             }
             sortCategories()
         }
-       
         testLoadCategories()
-        print(availibaleCategories)
     }
     
 }
@@ -99,7 +97,7 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Category") as! CategoryTableViewCell
         if choosingCategory {
             
-            let cellEntryType = getEntryType(from: indexPath.row).rawValue
+            let cellEntryType = availibaleCategories[indexPath.row].name
             delegate?.getCategory(from: cellEntryType)
             dismiss(animated: true, completion: nil)
         }
