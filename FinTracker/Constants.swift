@@ -9,6 +9,16 @@
 import Foundation
 import UIKit
 
+enum IconNames: String {
+    case creditCard = "creditcard.fill"
+    case house = "house.fill"
+    case transport = "car.fill"
+    case food = "cart.fill"
+    case entertainment = "person.3.fill"
+    case electronics = "desktopcomputer"
+    case other = "barcode"
+}
+
 enum EntryType: String, CaseIterable {
     case income = "Приход"
     
@@ -43,14 +53,14 @@ let myColors: (green: UIColor, red: UIColor) = (
 )
 
 
-typealias FinanceCategory = Dictionary<EntryType, UIImage>
-let defaultCategories: FinanceCategory = [
-    .income: UIImage(systemName: "creditcard.fill")!,
-    .house: UIImage(systemName: "house.fill")!,
-    .transport: UIImage(systemName: "car.fill")!,
-    .food: UIImage(systemName: "cart.fill")!,
-    .entertainment: UIImage(systemName: "person.3.fill")!,
-    .electronics: UIImage(systemName: "desktopcomputer")!,
-    .other: UIImage(systemName: "barcode")!
+typealias FinanceCategory = Dictionary<String, IconNames>
+let defaultCategories: Dictionary<EntryType, IconNames> = [
+    .income: .creditCard,
+    .house: .house,
+    .transport: .transport,
+    .food: .food,
+    .entertainment: .entertainment,
+    .electronics: .electronics,
+    .other: .other
 ]
 
