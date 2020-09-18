@@ -137,7 +137,6 @@ class EntryDetailViewController: UIViewController {
         
         func stringToCost(from str: String) -> Double{
             var resultString = ""
-            
             for c in str {
                 if c == " " { continue }
                 resultString.append(c)
@@ -152,8 +151,8 @@ class EntryDetailViewController: UIViewController {
             return result
         }
         
-        entry.name = nameTextField.text!
-        entry.cost = stringToCost(from: costTextField.text!)
+        entry.name = nameTextField.text == "" ? "Новая запись" : nameTextField.text!
+        entry.cost = stringToCost(from: costTextField.text == "" ? "0.0" : costTextField.text!)
         entry.date = datePicker.date
         entry.category = buttonName
         
