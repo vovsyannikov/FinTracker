@@ -35,13 +35,13 @@ class CategoryViewController: UIViewController {
         func sortCategories() {
             var tempCategories: [MyCategory] = []
             var index = choosingCategory ? 1 : 0
+            
             while tempCategories.count < availibaleCategories.count {
                 for cat in availibaleCategories {
-                    if index > 6 { break }
                     if cat.name == getEntryType(from: index).rawValue {
-                        print(index, tempCategories)
                         tempCategories.append(cat)
                         index += 1
+                        if tempCategories.count == availibaleCategories.count { break }
                     }
                 }
             }
