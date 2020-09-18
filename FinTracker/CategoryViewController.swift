@@ -13,13 +13,13 @@ class CategoryViewController: UIViewController {
     
     var userCategories: FinanceCategory = [:]
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
     }
-
+    
 }
 
 extension CategoryViewController: UITableViewDataSource {
@@ -29,9 +29,9 @@ extension CategoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Category") as! CategoryTableViewCell
-        func getCategoryName(from index: IndexPath) -> CategoryName {
-            var result: CategoryName?
-            switch index.row {
+        func getCategoryName(from index: Int) -> EntryType {
+            var result: EntryType?
+            switch index {
             case 0: result = .income
             case 1: result = .house
             case 2: result = .transport
@@ -44,7 +44,7 @@ extension CategoryViewController: UITableViewDataSource {
             return result!
         }
         
-        let categoryName = getCategoryName(from: indexPath)
+        let categoryName = getCategoryName(from: indexPath.row)
         let categoryImage = defaultCategories[categoryName]
         
         cell.nameLabel.text = categoryName.rawValue

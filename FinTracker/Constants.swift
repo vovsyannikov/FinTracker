@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-enum CategoryName: String, CaseIterable {
+enum EntryType: String, CaseIterable {
     case income = "Приход"
     case house = "Дом"
     case transport = "Транспорт"
@@ -17,6 +17,7 @@ enum CategoryName: String, CaseIterable {
     case entertainment = "Досуг"
     case electronics = "Электроника"
     case other = "Другое"
+    case outcome = "Расход"
 }
 
 let myColors: (green: UIColor, red: UIColor) = (
@@ -25,7 +26,7 @@ let myColors: (green: UIColor, red: UIColor) = (
 )
 
 
-typealias FinanceCategory = Dictionary<CategoryName, UIImage>
+typealias FinanceCategory = Dictionary<EntryType, UIImage>
 let defaultCategories: FinanceCategory = [
     .income: UIImage(systemName: "creditcard.fill")!,
     .house: UIImage(systemName: "house.fill")!,

@@ -9,11 +9,6 @@
 import Foundation
 import RealmSwift
 
-enum EntryType: String {
-    case income = "Приход"
-    case outcome = "Расход"
-}
-
 struct MyDate{
     var day = 00
     var month = 00
@@ -57,7 +52,7 @@ struct MyDate{
         } else if dayDistance == 1 {
             result = "Завтра"
         } else if dayDistance == -1 {
-          result = "Вчера"
+            result = "Вчера"
         } else {
             if self.day >= 10{
                 result += "\(self.day)/"

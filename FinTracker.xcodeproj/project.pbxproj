@@ -77,20 +77,20 @@
 		3CC233AB250F68970084FE1B /* FinTracker */ = {
 			isa = PBXGroup;
 			children = (
+				3CCD2EF425150E2100236BFF /* Constants.swift */,
+				3CC233C2250F7F1A0084FE1B /* Entry.swift */,
 				3CC233C0250F7AD00084FE1B /* EntryTableViewCell.swift */,
 				3C6EEC0D2513A75200ED11B9 /* CategoryTableViewCell.swift */,
-				3CC233AC250F68970084FE1B /* AppDelegate.swift */,
-				3CC233AE250F68970084FE1B /* SceneDelegate.swift */,
 				3CC233B0250F68970084FE1B /* ViewController.swift */,
 				3C8D6D012513800B003462F4 /* ChartsViewController.swift */,
 				3C8D6D032513A561003462F4 /* CategoryViewController.swift */,
-				3CC233C2250F7F1A0084FE1B /* Entry.swift */,
 				3C4232B8250F92AF0050A00E /* EntryDetailViewController.swift */,
-				3CCD2EF425150E2100236BFF /* Constants.swift */,
 				3CC233B2250F68970084FE1B /* Main.storyboard */,
 				3CC233B5250F689A0084FE1B /* Assets.xcassets */,
 				3CC233B7250F689A0084FE1B /* LaunchScreen.storyboard */,
 				3CC233BA250F689A0084FE1B /* Info.plist */,
+				3CC233AE250F68970084FE1B /* SceneDelegate.swift */,
+				3CC233AC250F68970084FE1B /* AppDelegate.swift */,
 			);
 			path = FinTracker;
 			sourceTree = "<group>";

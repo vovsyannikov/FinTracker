@@ -73,17 +73,16 @@ class ViewController: UIViewController {
         func testInit(){
             entries.append(Entry())
             entries.append(Entry())
-
+            
             entries[0].name = "Тестовое пополнение"
             entries[0].cost = 5_000.5
             entries[0].date = Date(timeIntervalSinceNow: 10800)
-            entries[0].category = "Дом"
-
-
+            entries[0].category = EntryType.income.rawValue
+            
             entries[1].name = "Тестовая покупка"
             entries[1].cost = -5_000
             entries[1].date = Date(timeIntervalSince1970: 0)
-            entries[1].category = "Транспорт"
+            entries[1].category = EntryType.transport.rawValue
             
             writeToRealm(from: entries[0])
             writeToRealm(from: entries[1])
@@ -129,7 +128,7 @@ class ViewController: UIViewController {
         
         return result!
     }
-
+    
 }
 
 // MARK: EntryDetailDelegate
@@ -148,36 +147,36 @@ extension ViewController: EntryDetailDelegate {
 
 // MARK: TODO - Sections
 extension ViewController: UITableViewDataSource{
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        var numOfSections = 0
-//        var foundSections: [String] = []
-//
-//        for entry in entries {
-//            let formattedDateString = entry.formattedDate()
-//            if !foundSections.contains(formattedDateString) {
-//                numOfSections += 1
-//                foundSections.append(formattedDateString)
-//            }
-//        }
-//        return numOfSections
-//    }
-//
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return entries[section].formattedDate()
-//    }
-//
+    //    func numberOfSections(in tableView: UITableView) -> Int {
+    //        var numOfSections = 0
+    //        var foundSections: [String] = []
+    //
+    //        for entry in entries {
+    //            let formattedDateString = entry.formattedDate()
+    //            if !foundSections.contains(formattedDateString) {
+    //                numOfSections += 1
+    //                foundSections.append(formattedDateString)
+    //            }
+    //        }
+    //        return numOfSections
+    //    }
+    //
+    //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    //        return entries[section].formattedDate()
+    //    }
+    //
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        var count = 0
-//        var foundEntries: [String] = []
-//
-//        for entry in entries {
-//            let formattedDateString = "\(entry.formattedDate().day)/\(entry.formattedDate().month)/\(entry.formattedDate().year)"
-//            if !foundEntries.contains(formattedDateString){
-//                count += 1
-//                foundEntries.append(formattedDateString)
-//            }
-//        }
-
+        //        var count = 0
+        //        var foundEntries: [String] = []
+        //
+        //        for entry in entries {
+        //            let formattedDateString = "\(entry.formattedDate().day)/\(entry.formattedDate().month)/\(entry.formattedDate().year)"
+        //            if !foundEntries.contains(formattedDateString){
+        //                count += 1
+        //                foundEntries.append(formattedDateString)
+        //            }
+        //        }
+        
         return entries.count
     }
     
@@ -195,12 +194,13 @@ extension ViewController: UITableViewDataSource{
             cell.signImageView.image = UIImage(systemName: "plus.circle")
             cell.signImageView.tintColor = myColors.green
             cell.sumLabel.textColor = myColors.green
-            }
+        }
         case .outcome: do {
             cell.signImageView.image = UIImage(systemName: "minus.circle")
             cell.signImageView.tintColor = myColors.red
             cell.sumLabel.textColor = myColors.red
-            }
+        }
+        default: break
         }
         
         return cell

@@ -10,7 +10,7 @@ import UIKit
 import Charts
 
 class ChartsViewController: UIViewController {
-
+    
     var entries: [Entry] = []
     
     let pieChart = PieChartView()
@@ -29,7 +29,7 @@ class ChartsViewController: UIViewController {
         pieChart.center = view.center
         view.addSubview(pieChart)
         
-        var pieChartEntries = [ChartDataEntry]()
+        var pieChartEntries = [PieChartDataEntry]()
         var incomeSum = 0.0
         var outcomeSum = 0.0
         for entry in entries {
@@ -40,10 +40,10 @@ class ChartsViewController: UIViewController {
                 outcomeSum += -entry.cost
             }
         }
-        pieChartEntries.append(ChartDataEntry(x: incomeSum, y: incomeSum))
-        pieChartEntries.append(ChartDataEntry(x: outcomeSum, y: outcomeSum))
+        pieChartEntries.append(PieChartDataEntry(value: incomeSum, label: EntryType.income.rawValue))
+        pieChartEntries.append(PieChartDataEntry(value: outcomeSum, label: EntryType.outcome.rawValue))
         
-        let setOfEntries = PieChartDataSet(entries: pieChartEntries, label: "+/-")
+        let setOfEntries = PieChartDataSet(entries: pieChartEntries, label: "")
         setOfEntries.colors = [
             myColors.green,
             myColors.red
@@ -52,5 +52,5 @@ class ChartsViewController: UIViewController {
         pieChart.data = data
     }
     
-
+    
 }
