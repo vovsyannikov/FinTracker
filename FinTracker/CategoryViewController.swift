@@ -38,10 +38,15 @@ class CategoryViewController: UIViewController {
             
             while tempCategories.count < availibaleCategories.count {
                 for cat in availibaleCategories {
-                    if cat.name == getEntryType(from: index).rawValue {
-                        tempCategories.append(cat)
-                        index += 1
-                        if tempCategories.count == availibaleCategories.count { break }
+                    if index < 6 {
+                        if cat.name == getEntryType(from: index).rawValue {
+                            tempCategories.append(cat)
+                            index += 1
+                        }
+                    } else {
+                        if !tempCategories.contains(cat){
+                            tempCategories.append(cat)
+                        }
                     }
                 }
             }
@@ -64,8 +69,14 @@ class CategoryViewController: UIViewController {
                 availibaleCategories.append(newItem(cat, at: &index))
             }
             sortCategories()
+            
+            let newCategory = MyCategory()
+            newCategory.name = "Тест"
+            newCategory.iconName = "sun.max"
+            availibaleCategories.append(newCategory)
         }
         testLoadCategories()
+        print(availibaleCategories)
     }
     
 }
