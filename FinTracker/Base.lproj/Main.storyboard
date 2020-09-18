@@ -93,6 +93,7 @@
                                 <sections/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="fsi-Zx-ifl"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="hNT-cg-AbU"/>
                                 </connections>
                             </tableView>
                         </subviews>

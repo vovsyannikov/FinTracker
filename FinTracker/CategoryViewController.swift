@@ -53,8 +53,11 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        let category = getEntryType(from: indexPath.row)
-        print(category)
+        if choosingCategory {
+            let cellEntryType = getEntryType(from: indexPath.row).rawValue
+            delegate?.getCategory(from: cellEntryType)
+            dismiss(animated: true, completion: nil)
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

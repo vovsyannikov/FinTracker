@@ -146,7 +146,7 @@ extension ViewController: EntryDetailDelegate {
 }
 
 // MARK: TODO - Sections
-extension ViewController: UITableViewDataSource{
+extension ViewController: UITableViewDataSource, UITableViewDelegate{
     //    func numberOfSections(in tableView: UITableView) -> Int {
     //        var numOfSections = 0
     //        var foundSections: [String] = []
@@ -220,7 +220,7 @@ extension ViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        entriesTableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

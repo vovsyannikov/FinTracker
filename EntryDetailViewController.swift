@@ -90,24 +90,36 @@ class EntryDetailViewController: UIViewController {
         
     }
     
-    func changeSelectedSegmentColor(to colorIndex: Int){
+    func changeCategoryButton(to cat: String) {
         let incomeString = "   \(EntryType.income.rawValue)"
-        let outcomeString = buttonName == EntryType.other.rawValue || buttonName == EntryType.income.rawValue
+        let outcomeString = cat == EntryType.other.rawValue || cat == EntryType.income.rawValue
             ? "   \(EntryType.other.rawValue)"
-            : "   \(buttonName)"
+            : "   \(cat)"
         
-        switch colorIndex {
-        case 0: do{
-            signSegmentedControl.selectedSegmentTintColor = myColors.green
+        switch signIndex {
+        case 0: do {
             categoryButton.setAttributedTitle(fixedText(from: incomeString), for: .normal)
             categoryButton.tintColor = UIColor.black
             categoryButton.isEnabled = false
         }
         case 1: do {
-            signSegmentedControl.selectedSegmentTintColor = myColors.red
             categoryButton.setAttributedTitle(underlinedText(from: outcomeString), for: .normal)
             categoryButton.tintColor = UIColor.systemBlue
             categoryButton.isEnabled = true
+        }
+        default: break
+        }
+    }
+    
+    func changeSelectedSegmentColor(to colorIndex: Int){
+        switch colorIndex {
+        case 0: do{
+            signSegmentedControl.selectedSegmentTintColor = myColors.green
+            changeCategoryButton(to: EntryType.income.rawValue)
+        }
+        case 1: do {
+            signSegmentedControl.selectedSegmentTintColor = myColors.red
+            changeCategoryButton(to: buttonName)
         }
         default:
             break
@@ -115,6 +127,7 @@ class EntryDetailViewController: UIViewController {
     }
     
     @IBAction func changeEntryType(_ sender: Any) {
+        signIndex = signSegmentedControl.selectedSegmentIndex
         changeSelectedSegmentColor(to: signSegmentedControl.selectedSegmentIndex)
         changeTitleLabel(to: signSegmentedControl.selectedSegmentIndex)
     }
@@ -154,6 +167,7 @@ class EntryDetailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? CategoryViewController, segue.identifier == "CategorySelection" {
             vc.delegate = self
+            vc.choosingCategory = true
         }
     }
     
@@ -161,6 +175,7 @@ class EntryDetailViewController: UIViewController {
 
 extension EntryDetailViewController: CategoryDelegate{
     func getCategory(from cat: String) {
-        print("Got \(cat)")
+        buttonName = cat
+        changeCategoryButton(to: cat)
     }
 }
