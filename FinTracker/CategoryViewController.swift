@@ -9,17 +9,9 @@
 import UIKit
 
 class CategoryViewController: UIViewController {
-    typealias Category = [(name: String, icon: UIImage)]
+    static let shared = CategoryViewController()
     
-    let defaultCategories: Category = [
-        (name: "Дом", icon: UIImage(systemName: "house.fill")!),
-        (name: "Транспорт", icon: UIImage(systemName: "car.fill")!),
-        (name: "Продукты", icon: UIImage(systemName: "cart.fill")!),
-        (name: "Досуг", icon: UIImage(systemName: "person.3.fill")!),
-        (name: "Электроника", icon: UIImage(systemName: "desktopcomputer")!),
-        (name: "Другое", icon: UIImage(systemName: "barcode")!)
-    ]
-    var userCategories: Category = []
+    var userCategories: FinanceCategory = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +33,12 @@ extension CategoryViewController: UITableViewDataSource {
         
         cell.nameLabel.text = cat.name
         cell.iconImageView.image = cat.icon
+        
+        if indexPath.row == 0{
+            cell.iconImageView.tintColor = myColors.green
+        } else {
+            cell.iconImageView.tintColor = myColors.red
+        }
         
         return cell
     }

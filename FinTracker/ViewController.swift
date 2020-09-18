@@ -15,9 +15,6 @@ class ViewController: UIViewController {
     private let realm = try! Realm()
     
     var entries = [Entry]()
-    let colors: (green: UIColor, red: UIColor) = (
-        green: UIColor(red: 0, green: 0.5, blue: 0, alpha: 1),
-        red: UIColor(red: 0.75, green: 0, blue: 0, alpha: 1))
     @IBOutlet weak var entriesTableView: UITableView!
     
     // MARK: Realm funcs
@@ -191,13 +188,13 @@ extension ViewController: UITableViewDataSource{
         switch entry.type {
         case .income: do {
             cell.signImageView.image = UIImage(systemName: "plus.circle")
-            cell.signImageView.tintColor = colors.green
-            cell.sumLabel.textColor = colors.green
+            cell.signImageView.tintColor = myColors.green
+            cell.sumLabel.textColor = myColors.green
             }
         case .outcome: do {
             cell.signImageView.image = UIImage(systemName: "minus.circle")
-            cell.signImageView.tintColor = colors.red
-            cell.sumLabel.textColor = colors.red
+            cell.signImageView.tintColor = myColors.red
+            cell.sumLabel.textColor = myColors.red
             }
         }
         

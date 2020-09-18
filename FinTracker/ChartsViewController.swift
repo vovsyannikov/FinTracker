@@ -45,8 +45,8 @@ class ChartsViewController: UIViewController {
         
         let setOfEntries = PieChartDataSet(entries: pieChartEntries, label: "+/-")
         setOfEntries.colors = [
-            ViewController.shared.colors.green,
-            ViewController.shared.colors.red
+            myColors.green,
+            myColors.red
         ]
         let data = PieChartData(dataSet: setOfEntries)
         pieChart.data = data

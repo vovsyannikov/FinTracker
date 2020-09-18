@@ -60,13 +60,20 @@ class EntryDetailViewController: UIViewController {
         datePicker.maximumDate = Date(timeIntervalSinceNow: 10800)
         
         // Установка кнопки категории
-        categoryButton.setTitle(" \(buttonName)", for: .normal)
+        categoryButton.setAttributedTitle(underlinedText(from: "   \(buttonName)"), for: .normal)
         categoryButton.layer.borderWidth = 0.5
         categoryButton.layer.borderColor = UIColor.gray.cgColor
         categoryButton.layer.cornerRadius = 5
         
+//        changeSelectedSegmentColor(to: signIndex)
     }
     
+    func underlinedText(from input: String) -> NSAttributedString {
+        let underlineAttribute = [NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
+        var resultingString = NSAttributedString(string: input, attributes: underlineAttribute)
+        
+        return resultingString
+    }
     
     func changeTitleLabel(to titleIndex: Int){
         switch titleIndex {
@@ -78,9 +85,21 @@ class EntryDetailViewController: UIViewController {
     }
     
     func changeSelectedSegmentColor(to colorIndex: Int){
+        let defaultText = [
+            "   \(defaultCategories[0].name)",
+            "   \(defaultCategories.last!.name)"
+        ]
         switch colorIndex {
-        case 0: signSegmentedControl.selectedSegmentTintColor = UIColor.green
-        case 1: signSegmentedControl.selectedSegmentTintColor = UIColor.red
+        case 0: do{
+            signSegmentedControl.selectedSegmentTintColor = myColors.green
+            categoryButton.setAttributedTitle(underlinedText(from: defaultText[0]), for: .normal)
+            categoryButton.isEnabled = false
+        }
+        case 1: do {
+            signSegmentedControl.selectedSegmentTintColor = myColors.red
+            categoryButton.setAttributedTitle(underlinedText(from: defaultText[1]), for: .normal)
+            categoryButton.isEnabled = true
+        }
         default:
             break
         }
@@ -113,7 +132,7 @@ class EntryDetailViewController: UIViewController {
         entry.name = nameTextField.text!
         entry.cost = stringToCost(from: costTextField.text!)
         entry.date = datePicker.date
-        entry.category = categoryButton.title(for: .normal)!
+        entry.category = "\(categoryButton.attributedTitle(for: .normal)!)"
         
         switch isNew {
         case true: delegate?.createCell(for: entry)

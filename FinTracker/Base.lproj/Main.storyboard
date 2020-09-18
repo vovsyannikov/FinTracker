@@ -181,14 +181,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngb-Xi-WBE">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ngb-Xi-WBE">
                                 <rect key="frame" x="111.5" y="232" width="282.5" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="Edw-hT-T9a"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
-                                <state key="normal" title="Выбрать... &gt;">
-                                    <color key="titleColor" systemColor="labelColor"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Выбрать... &gt;">
+                                            <attributes>
+                                                <color key="NSColor" systemColor="labelColor"/>
+                                                <font key="NSFont" metaFont="system"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgD-ZN-3xR">
@@ -313,7 +319,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1P-tU-86r">
-                                                    <rect key="frame" x="85" y="26" width="42" height="28"/>
+                                                    <rect key="frame" x="85" y="26" width="275" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -326,6 +332,7 @@
                                                 <constraint firstItem="xdi-id-nnJ" firstAttribute="leading" secondItem="GCs-eb-nYA" secondAttribute="leading" constant="15" id="clO-yM-D2e"/>
                                                 <constraint firstItem="I1P-tU-86r" firstAttribute="leading" secondItem="xdi-id-nnJ" secondAttribute="trailing" constant="20" id="czo-RU-T82"/>
                                                 <constraint firstItem="I1P-tU-86r" firstAttribute="top" secondItem="GCs-eb-nYA" secondAttribute="topMargin" constant="15" id="k5q-Rm-Fc9"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="I1P-tU-86r" secondAttribute="trailing" constant="15" id="zbt-o5-VxT"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
