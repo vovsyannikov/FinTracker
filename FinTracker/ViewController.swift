@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var entriesTableView: UITableView!
     
     // MARK: Realm funcs
+    // Запись в Realm
     func writeToRealm(from entry: Entry, at index: Int = -1){
         if index == -1{
             entries.append(entry)
@@ -29,6 +30,7 @@ class ViewController: UIViewController {
             self.realm.add(entry)
         }
     }
+    // Чтение из Realm
     func readFromRealm() -> [Entry]{
         var entries = [Entry]()
         
@@ -40,6 +42,7 @@ class ViewController: UIViewController {
             first.date < second.date
         })
     }
+    // Удаление из Realm
     func deleteFromRealm(_ entry: Entry){
         var entryToDelete: Int?
         for (index, el) in entries.enumerated() {
@@ -56,6 +59,7 @@ class ViewController: UIViewController {
             realm.delete(entry)
         }
     }
+    // Обновление записи в Realm
     func updateRealm(entry: Entry, with newEntry: Entry) {
         deleteFromRealm(entry)
         writeToRealm(from: newEntry)
@@ -65,6 +69,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Тестовая функция для записи
         func testInit(){
             entries.append(Entry())
             entries.append(Entry())

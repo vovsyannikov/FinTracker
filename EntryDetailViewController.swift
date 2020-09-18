@@ -91,9 +91,9 @@ class EntryDetailViewController: UIViewController {
     }
     
     func changeSelectedSegmentColor(to colorIndex: Int){
-        let incomeString = "   \(defaultCategories[0].name)"
-        let outcomeString = buttonName == defaultCategories[0].name
-            ? "   \(defaultCategories.last!.name)"
+        let incomeString = "   \(CategoryName.income.rawValue)"
+        let outcomeString = buttonName == CategoryName.other.rawValue
+            ? "   \(CategoryName.other.rawValue)"
             : "   \(buttonName)"
         
         switch colorIndex {

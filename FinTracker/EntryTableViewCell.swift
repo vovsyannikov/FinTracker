@@ -13,6 +13,7 @@ class EntryTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var sumLabel: UILabel!
     @IBOutlet weak var signImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

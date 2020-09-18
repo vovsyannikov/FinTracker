@@ -9,20 +9,30 @@
 import Foundation
 import UIKit
 
+enum CategoryName: String, CaseIterable {
+    case income = "Приход"
+    case house = "Дом"
+    case transport = "Транспорт"
+    case food = "Еда"
+    case entertainment = "Досуг"
+    case electronics = "Электроника"
+    case other = "Другое"
+}
+
 let myColors: (green: UIColor, red: UIColor) = (
     green: UIColor(red: 0, green: 0.5, blue: 0, alpha: 1),
     red: UIColor(red: 0.75, green: 0, blue: 0, alpha: 1)
 )
 
 
-typealias FinanceCategory = [(name: String, icon: UIImage)]
+typealias FinanceCategory = Dictionary<CategoryName, UIImage>
 let defaultCategories: FinanceCategory = [
-    (name: "Приход", icon: UIImage(systemName: "creditcard.fill")!),
-    (name: "Дом", icon: UIImage(systemName: "house.fill")!),
-    (name: "Транспорт", icon: UIImage(systemName: "car.fill")!),
-    (name: "Продукты", icon: UIImage(systemName: "cart.fill")!),
-    (name: "Досуг", icon: UIImage(systemName: "person.3.fill")!),
-    (name: "Электроника", icon: UIImage(systemName: "desktopcomputer")!),
-    (name: "Другое", icon: UIImage(systemName: "barcode")!)
+    .income: UIImage(systemName: "creditcard.fill")!,
+    .house: UIImage(systemName: "house.fill")!,
+    .transport: UIImage(systemName: "car.fill")!,
+    .food: UIImage(systemName: "cart.fill")!,
+    .entertainment: UIImage(systemName: "person.3.fill")!,
+    .electronics: UIImage(systemName: "desktopcomputer")!,
+    .other: UIImage(systemName: "barcode")!
 ]
 

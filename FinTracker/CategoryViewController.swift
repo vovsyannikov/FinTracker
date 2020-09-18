@@ -11,11 +11,12 @@ import UIKit
 class CategoryViewController: UIViewController {
     static let shared = CategoryViewController()
     
-    var userCategories: FinanceCategory = []
+    var userCategories: FinanceCategory = [:]
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
 
@@ -28,11 +29,26 @@ extension CategoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Category") as! CategoryTableViewCell
+        func getCategoryName(from index: IndexPath) -> CategoryName {
+            var result: CategoryName?
+            switch index.row {
+            case 0: result = .income
+            case 1: result = .house
+            case 2: result = .transport
+            case 3: result = .food
+            case 4: result = .entertainment
+            case 5: result = .electronics
+            case 6: result = .other
+            default: break
+            }
+            return result!
+        }
         
-        let cat = defaultCategories[indexPath.row]
+        let categoryName = getCategoryName(from: indexPath)
+        let categoryImage = defaultCategories[categoryName]
         
-        cell.nameLabel.text = cat.name
-        cell.iconImageView.image = cat.icon
+        cell.nameLabel.text = categoryName.rawValue
+        cell.iconImageView.image = categoryImage
         
         if indexPath.row == 0{
             cell.iconImageView.tintColor = myColors.green
