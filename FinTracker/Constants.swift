@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-enum IconNames: String {
+enum IconNames: String, CaseIterable {
     case creditCard = "creditcard.fill"
     case house = "house.fill"
     case transport = "car.fill"
@@ -17,6 +17,36 @@ enum IconNames: String {
     case entertainment = "person.3.fill"
     case electronics = "desktopcomputer"
     case other = "barcode"
+    
+    case pen = "pencil"
+    case paperPlane = "paperplane.fill"
+    case map = "map.fill"
+    case envelope = "envelope.fill"
+    case phone = "phone.fill"
+}
+
+func getIconName(from index: Int) -> IconNames {
+    var result: IconNames?
+    
+    switch index {
+    case 0:  result = .creditCard
+    case 1:  result = .house
+    case 2:  result = .transport
+    case 3:  result = .food
+    case 4:  result = .entertainment
+    case 5:  result = .electronics
+    case 6:  result = .other
+        
+    case 7:  result = .pen
+    case 8:  result = .paperPlane
+    case 9:  result = .map
+    case 10: result = .envelope
+    case 11: result = .phone
+        
+    default: break
+    }
+    
+    return result!
 }
 
 enum EntryType: String, CaseIterable {

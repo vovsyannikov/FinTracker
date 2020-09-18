@@ -28,10 +28,21 @@ class CategoryViewController: UIViewController {
     var delegate: CategoryDelegate?
     
     var availibaleCategories: [MyCategory] = []
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var chooseLabel: UILabel!
+    @IBOutlet weak var createCategoryButton: UIButton!
     
     @IBOutlet weak var categoriesTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if choosingCategory {
+            createCategoryButton.isHidden.toggle()
+            chooseLabel.text = "Выберете категорию"
+        } else {
+            chooseLabel.text = ""
+        }
+        
         func sortCategories() {
             var tempCategories: [MyCategory] = []
             var index = choosingCategory ? 1 : 0
@@ -75,6 +86,7 @@ class CategoryViewController: UIViewController {
             newCategory.iconName = "sun.max"
             availibaleCategories.append(newCategory)
         }
+        
         testLoadCategories()
         print(availibaleCategories)
     }
