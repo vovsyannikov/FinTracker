@@ -7,12 +7,9 @@
 //
 
 import UIKit
-import RealmSwift
 
 class ViewController: UIViewController {
     static var shared = ViewController()
-    
-    private let realm = try! Realm()
     
     var entries: [Entry] = []
     var cellEntries: [Entry] = []
@@ -20,52 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var entriesTableView: UITableView!
     @IBOutlet weak var periodSegmentedControl: UISegmentedControl!
     
-    // MARK: Realm funcs
-    // Запись в Realm
-    func writeToRealm(_ entry: Entry) {
-        
-        entries.append(entry)
-        
-        try! self.realm.write {
-            self.realm.add(entry)
-        }
-    }
-    // Чтение из Realm
-    func readFromRealm() -> [Entry]{
-        var entries = [Entry]()
-        
-        for entry in self.realm.objects(Entry.self) {
-            entries.append(entry)
-        }
-        
-        return entries.sorted(by: { (first, second) -> Bool in
-            first.date < second.date
-        })
-    }
-    // Удаление из Realm
-    func deleteFromRealm(_ entry: Entry){
-        var entryIndexToDelete: Int?
-        var entryToDelete: Entry?
-        for (index, el) in entries.enumerated() {
-            if entry == el {
-                entryIndexToDelete = index
-            }
-        }
-        
-        try! realm.write {
-            realm.delete(entry)
-        }
-        
-        if (entryIndexToDelete != nil) {
-            entries.remove(at: entryIndexToDelete!)
-        }
-    }
-    // Обновление записи в Realm
-    func updateRealm(entry: Entry, with newEntry: Entry) {
-        deleteFromRealm(entry)
-        writeToRealm(newEntry)
-    }
-    
+      
     // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +41,6 @@ class ViewController: UIViewController {
         }
         
 //        testInit()
-        entries = readFromRealm()
         cellEntries = entries
         sortEntries()
     }
@@ -183,19 +134,20 @@ class ViewController: UIViewController {
 extension ViewController: EntryDetailDelegate {
     // Обновление имеющихся ячеек
     func update(entry oldEntry: Entry, with newEntry: Entry) {
-//        print(newEntry, oldEntry)
-//        for (index, obj) in realm.objects(Entry.self).enumerated(){
-//            print("Realm: \(obj)")
-//            print("Entry: \(entries[index])")
-//            print()
-//        }
-//        print(entryToDelete, sentEntry, oldEntry)
-        updateRealm(entry: oldEntry, with: newEntry)
+        var indexToReplace = 15
+        for (index, el) in entries.enumerated(){
+            if oldEntry == el {
+                indexToReplace = index
+            }
+        }
+        entries.remove(at: indexToReplace)
+        entries.insert(newEntry, at: indexToReplace)
+        
         entriesTableView.reloadData()
     }
     // Создание новой ячейки
     func createCell(for entry: Entry) {
-        writeToRealm(entry)
+        entries.append(entry)
         entriesTableView.reloadData()
     }
 }
@@ -238,7 +190,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         if editingStyle == .delete{
             
-            deleteFromRealm(cellEntries[indexPath.row])
             
             self.entriesTableView.beginUpdates()
             self.entriesTableView.deleteRows(at: [indexPath], with: .automatic)

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 //MARK: Category Delegate
 protocol CategoryDelegate {
@@ -15,16 +14,15 @@ protocol CategoryDelegate {
 }
 
 //MARK: MyCategory class
-class MyCategory: Object {
-    @objc dynamic var name = ""
-    @objc dynamic var iconName = ""
+class MyCategory: CustomStringConvertible {
+    var name = ""
+    var iconName = ""
     var icon: UIImage { UIImage(systemName: iconName)!}
     
-    override var description: String { "\(name): \(iconName)"}
+    var description: String { "\(name): \(iconName)"}
 }
 
 class CategoryViewController: UIViewController {
-    let realm = try! Realm()
     
     var choosingCategory = false
     var delegate: CategoryDelegate?
@@ -47,26 +45,26 @@ class CategoryViewController: UIViewController {
             chooseLabel.text = ""
         }
         
-        func sortCategories() {
-            var tempCategories: [MyCategory] = []
-            var index = choosingCategory ? 1 : 0
-            
-            while tempCategories.count < availibaleCategories.count {
-                for cat in availibaleCategories {
-                    if index < 6 {
-                        if cat.name == getEntryType(from: index) {
-                            tempCategories.append(cat)
-                            index += 1
-                        }
-                    } else {
-                        if !tempCategories.contains(cat){
-                            tempCategories.append(cat)
-                        }
-                    }
-                }
-            }
-            availibaleCategories = tempCategories
-        }
+//        func sortCategories() {
+//            var tempCategories: [MyCategory] = []
+//            var index = choosingCategory ? 1 : 0
+//
+//            while tempCategories.count < availibaleCategories.count {
+//                for cat in availibaleCategories {
+//                    if index < 6 {
+//                        if cat.name == getEntryType(from: index) {
+//                            tempCategories.append(cat)
+//                            index += 1
+//                        }
+//                    } else {
+//                        if !tempCategories.contains(cat){
+//                            tempCategories.append(cat)
+//                        }
+//                    }
+//                }
+//            }
+//            availibaleCategories = tempCategories
+//        }
         func testLoadCategories() {
             func newItem(_ item: (key: EntryType, value: IconNames), at index: inout Int) -> MyCategory {
                 let newCategory = MyCategory()
@@ -83,7 +81,7 @@ class CategoryViewController: UIViewController {
                 }
                 availibaleCategories.append(newItem(cat, at: &index))
             }
-            sortCategories()
+//            sortCategories()
         }
         
         testLoadCategories()

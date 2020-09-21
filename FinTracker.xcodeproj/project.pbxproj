@@ -24,6 +24,7 @@
 		3CC233C1250F7AD00084FE1B /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC233C0250F7AD00084FE1B /* EntryTableViewCell.swift */; };
 		3CC233C3250F7F1A0084FE1B /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC233C2250F7F1A0084FE1B /* Entry.swift */; };
 		3CCD2EF525150E2100236BFF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCD2EF425150E2100236BFF /* Constants.swift */; };
+		3CE85FBF251932C8001A9CA1 /* Finances.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3CE85FBD251932C7001A9CA1 /* Finances.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		3CC233C0250F7AD00084FE1B /* EntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
 		3CC233C2250F7F1A0084FE1B /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = SOURCE_ROOT; };
 		3CCD2EF425150E2100236BFF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3CE85FBE251932C8001A9CA1 /* Finances.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Finances.xcdatamodel; sourceTree = "<group>"; };
 		7BB165F0387F7F03922E9E39 /* Pods-FinTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinTracker.debug.xcconfig"; path = "Target Support Files/Pods-FinTracker/Pods-FinTracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,6 +102,7 @@
 				3CC233BA250F689A0084FE1B /* Info.plist */,
 				3CC233AE250F68970084FE1B /* SceneDelegate.swift */,
 				3CC233AC250F68970084FE1B /* AppDelegate.swift */,
+				3CE85FBD251932C7001A9CA1 /* Finances.xcdatamodeld */,
 			);
 			path = FinTracker;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				3C8D6D022513800B003462F4 /* ChartsViewController.swift in Sources */,
 				3CC233C1250F7AD00084FE1B /* EntryTableViewCell.swift in Sources */,
 				3C5E53942518F2F400A1A2EA /* CategoryDetailViewController.swift in Sources */,
+				3CE85FBF251932C8001A9CA1 /* Finances.xcdatamodeld in Sources */,
 				3CC233B1250F68970084FE1B /* ViewController.swift in Sources */,
 				3C8D6D042513A561003462F4 /* CategoryViewController.swift in Sources */,
 				3CCD2EF525150E2100236BFF /* Constants.swift in Sources */,
@@ -450,6 +454,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3CE85FBD251932C7001A9CA1 /* Finances.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3CE85FBE251932C8001A9CA1 /* Finances.xcdatamodel */,
+			);
+			currentVersion = 3CE85FBE251932C8001A9CA1 /* Finances.xcdatamodel */;
+			path = Finances.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3CC233A1250F68970084FE1B /* Project object */;
 }

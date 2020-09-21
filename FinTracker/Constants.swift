@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+enum CoreDataAttributes: String{
+    case name, date, category, cost
+}
+
 //MARK: enum SegueIDs
 enum SegueIDs: String {
     case createEntry = "CreateEntry"

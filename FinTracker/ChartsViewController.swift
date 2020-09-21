@@ -22,7 +22,6 @@ class ChartsViewController: UIViewController {
     
     //MARK: View did appear
     override func viewDidAppear(_ animated: Bool) {
-        entries = ViewController.shared.readFromRealm()
         updateChart()
     }
     

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RealmSwift
 
 struct MyDate{
     var day = 00
@@ -77,11 +76,12 @@ struct MyDate{
     
 }
 
-class Entry: Object {
-    override var description: String {"\(name): \(type.rawValue) \(cost) \(myDate.getDate())"}
+class Entry: CustomStringConvertible {
+    var description: String {"\(name): \(type.rawValue) \(cost) \(myDate.getDate())"}
     
-    @objc dynamic var name = ""
-    @objc dynamic var cost = 0.0
+    var name = ""
+    
+    var cost = 0.0
     var costString: String {
         let formatter = NumberFormatter()
         formatter.groupingSeparator = " "
@@ -92,14 +92,29 @@ class Entry: Object {
         
         return result!
     }
-    @objc dynamic var date = Date()
+    
+    var date = Date()
     var myDate: MyDate { .init(from: date) }
+    
     var type: EntryType { isPositive() ? .income : .outcome }
-    @objc dynamic var typeString: String { type.rawValue }
-    @objc dynamic var category = ""
+    var typeString: String { type.rawValue }
+    var category = ""
     
     func isPositive() -> Bool {
         return cost >= 0
     }
+
+}
+
+func == (left: Entry, right: Entry) -> Bool {
+    var result = false
     
+    if left.name == right.name &&
+        left.myDate.getDate() == right.myDate.getDate() &&
+        left.category == right.category &&
+        left.cost == right.cost {
+        result = true
+    }
+    
+    return result
 }
