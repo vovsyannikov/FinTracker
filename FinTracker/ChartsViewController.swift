@@ -11,8 +11,6 @@ import Charts
 
 class ChartsViewController: UIViewController {
     
-    var entries: [Entry] = []
-    
     let pieChart = PieChartView()
     
     // MARK: View did load
@@ -34,7 +32,7 @@ class ChartsViewController: UIViewController {
         var pieChartEntries = [PieChartDataEntry]()
         var incomeSum = 0.0
         var outcomeSum = 0.0
-        for entry in entries {
+        for entry in allEntries {
             switch entry.isPositive() {
             case true:
                 incomeSum += entry.cost

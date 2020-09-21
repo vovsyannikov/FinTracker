@@ -11,7 +11,6 @@ import UIKit
 class ViewController: UIViewController {
     static var shared = ViewController()
     
-    var entries: [Entry] = []
     var cellEntries: [Entry] = []
     var sentEntry = Entry()
     @IBOutlet weak var entriesTableView: UITableView!
@@ -26,22 +25,22 @@ class ViewController: UIViewController {
         
         // Тестовая функция для записи
         func testInit(){
-            entries.append(Entry())
-            entries.append(Entry())
+            allEntries.append(Entry())
+            allEntries.append(Entry())
             
-            entries[0].name = "Тестовое пополнение"
-            entries[0].cost = 5_000.5
-            entries[0].date = Date(timeIntervalSinceNow: 10800)
-            entries[0].category = EntryType.income.rawValue
+            allEntries[0].name = "Тестовое пополнение"
+            allEntries[0].cost = 5_000.5
+            allEntries[0].date = Date(timeIntervalSinceNow: 10800)
+            allEntries[0].category = EntryType.income.rawValue
             
-            entries[1].name = "Тестовая покупка"
-            entries[1].cost = -5_000
-            entries[1].date = Date(timeIntervalSince1970: 0)
-            entries[1].category = EntryType.transport.rawValue
+            allEntries[1].name = "Тестовая покупка"
+            allEntries[1].cost = -5_000
+            allEntries[1].date = Date(timeIntervalSince1970: 0)
+            allEntries[1].category = EntryType.transport.rawValue
         }
         
 //        testInit()
-        cellEntries = entries
+        cellEntries = allEntries
         sortEntries()
     }
     
@@ -91,23 +90,23 @@ class ViewController: UIViewController {
         let currentDay = MyDate(from: Date(timeIntervalSinceNow: 10800))
         cellEntries = []
         switch periodSegmentedControl.selectedSegmentIndex{
-        case 0: cellEntries = entries
+        case 0: cellEntries = allEntries
         case 1: do {
-            for entry in entries {
+            for entry in allEntries {
                 if entry.myDate.year == currentDay.year {
                     cellEntries.append(entry)
                 }
             }
         }
         case 2: do {
-            for entry in entries {
+            for entry in allEntries {
                 if entry.myDate.year == currentDay.year && entry.myDate.month == currentDay.month {
                     cellEntries.append(entry)
                 }
             }
         }
         case 3: do {
-            for entry in entries {
+            for entry in allEntries {
                 if entry.myDate.year == currentDay.year &&
                     entry.myDate.month == currentDay.month &&
                     currentDay.day - entry.myDate.day <= 7{
@@ -116,7 +115,7 @@ class ViewController: UIViewController {
             }
         }
         case 4: do {
-            for entry in entries {
+            for entry in allEntries {
                 if entry.myDate.year == currentDay.year &&
                     entry.myDate.month == currentDay.month &&
                     entry.myDate.day == currentDay.day{
@@ -135,19 +134,19 @@ extension ViewController: EntryDetailDelegate {
     // Обновление имеющихся ячеек
     func update(entry oldEntry: Entry, with newEntry: Entry) {
         var indexToReplace = 15
-        for (index, el) in entries.enumerated(){
+        for (index, el) in allEntries.enumerated(){
             if oldEntry == el {
                 indexToReplace = index
             }
         }
-        entries.remove(at: indexToReplace)
-        entries.insert(newEntry, at: indexToReplace)
+        allEntries.remove(at: indexToReplace)
+        allEntries.insert(newEntry, at: indexToReplace)
         
         entriesTableView.reloadData()
     }
     // Создание новой ячейки
     func createCell(for entry: Entry) {
-        entries.append(entry)
+        allEntries.append(entry)
         entriesTableView.reloadData()
     }
 }

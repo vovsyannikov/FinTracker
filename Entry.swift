@@ -76,6 +76,8 @@ struct MyDate{
     
 }
 
+var allEntries: [Entry] = []
+
 class Entry: CustomStringConvertible {
     var description: String {"\(name): \(type.rawValue) \(cost) \(myDate.getDate())"}
     
