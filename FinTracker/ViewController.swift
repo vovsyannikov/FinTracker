@@ -14,8 +14,10 @@ class ViewController: UIViewController {
     
     private let realm = try! Realm()
     
-    var entries = [Entry]()
+    var entries: [Entry] = []
+    var cellEntries: [Entry] = []
     @IBOutlet weak var entriesTableView: UITableView!
+    @IBOutlet weak var periodSegmentedControl: UISegmentedControl!
     
     // MARK: Realm funcs
     // Запись в Realm
@@ -91,6 +93,7 @@ class ViewController: UIViewController {
 //        testInit()
         entries = readFromRealm()
         sortEntries()
+        cellEntries = entries
     }
     
     // MARK: prepare for segue
@@ -135,6 +138,51 @@ class ViewController: UIViewController {
         }
     }
     
+    //MARK: Entry sorting
+    @IBAction func sortTableView(_ sender: Any) {
+        
+        let currentDay = MyDate(from: Date(timeIntervalSinceNow: 10800))
+        cellEntries = []
+        switch periodSegmentedControl.selectedSegmentIndex{
+        case 0: cellEntries = entries
+        case 1: do {
+            for entry in entries {
+                if entry.myDate.year == currentDay.year {
+                    cellEntries.append(entry)
+                }
+            }
+        }
+        case 2: do {
+            for entry in entries {
+                if entry.myDate.year == currentDay.year && entry.myDate.month == currentDay.month {
+                    cellEntries.append(entry)
+                }
+            }
+        }
+        case 3: do {
+            for entry in entries {
+                if entry.myDate.year == currentDay.year &&
+                    entry.myDate.month == currentDay.month &&
+                    currentDay.day - entry.myDate.day <= 7{
+                    cellEntries.append(entry)
+                }
+            }
+        }
+        case 4: do {
+            for entry in entries {
+                if entry.myDate.year == currentDay.year &&
+                    entry.myDate.month == currentDay.month &&
+                    entry.myDate.day == currentDay.day{
+                    cellEntries.append(entry)
+                }
+            }
+        }
+        default: break
+        }
+        
+        entriesTableView.reloadData()
+    }
+    
 }
 
 // MARK: ext EntryDetailDelegate
@@ -157,14 +205,14 @@ extension ViewController: EntryDetailDelegate {
 extension ViewController: UITableViewDataSource, UITableViewDelegate{
     //MARK: Number of rows in section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return entries.count
+        return cellEntries.count
     }
     
     //MARK: Cell for row at
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Entry") as! EntryTableViewCell
         
-        let entry = entries[indexPath.row]
+        let entry = cellEntries[indexPath.row]
         print(entry)
         
         cell.nameLabel.text = entry.name

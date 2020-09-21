@@ -48,13 +48,14 @@ struct MyDate{
         let monthDistance = self.month - currentDate.month
         let yearDistance = self.year - currentDate.year
         
-        if dayDistance == 0 && monthDistance == 0{
-            result = "Сегодня"
-        } else if dayDistance == 1 {
-            result = "Завтра"
-        } else if dayDistance == -1 {
-            result = "Вчера"
-        } else {
+        
+        if yearDistance == 0 && dayDistance == 0 && monthDistance == 0{
+                result = "Сегодня"
+            } else if yearDistance == 0 && monthDistance == 0 && dayDistance == 1 {
+                result = "Завтра"
+            } else if yearDistance == 0 && monthDistance == 0 && dayDistance == -1 {
+                result = "Вчера"
+            } else {
             if self.day >= 10{
                 result += "\(self.day)/"
             } else {

@@ -35,11 +35,28 @@
                                                 <segue destination="FnT-nB-I93" kind="presentation" identifier="CreateEntry" id="cpH-VS-IHl"/>
                                             </connections>
                                         </button>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="698-6X-oDp">
+                                            <rect key="frame" x="5" y="15" width="357" height="31"/>
+                                            <segments>
+                                                <segment title="Все"/>
+                                                <segment title="Год"/>
+                                                <segment title="Месяц"/>
+                                                <segment title="Неделя"/>
+                                                <segment title="День"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="sortTableView:" destination="BYZ-38-t0r" eventType="valueChanged" id="rNI-nQ-Gfv"/>
+                                            </connections>
+                                        </segmentedControl>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="hP4-hg-nD2" firstAttribute="centerY" secondItem="iH6-EP-RGP" secondAttribute="centerY" id="9xR-8Q-dpf"/>
+                                        <constraint firstItem="hP4-hg-nD2" firstAttribute="leading" secondItem="698-6X-oDp" secondAttribute="trailing" constant="15" id="buF-Cv-SGk"/>
+                                        <constraint firstItem="698-6X-oDp" firstAttribute="top" secondItem="iH6-EP-RGP" secondAttribute="top" constant="15" id="eZi-ec-1qF"/>
                                         <constraint firstAttribute="trailing" secondItem="hP4-hg-nD2" secondAttribute="trailing" constant="15" id="icU-9t-CUv"/>
+                                        <constraint firstAttribute="bottom" secondItem="698-6X-oDp" secondAttribute="bottom" constant="15" id="vmr-8w-DDx"/>
+                                        <constraint firstItem="698-6X-oDp" firstAttribute="leading" secondItem="iH6-EP-RGP" secondAttribute="leading" constant="5" id="y1Y-vT-9zf"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
@@ -121,6 +138,7 @@
                     <navigationItem key="navigationItem" title="Сводка" id="e6d-tR-fJO"/>
                     <connections>
                         <outlet property="entriesTableView" destination="e8J-IH-yT8" id="Xly-Wa-ogD"/>
+                        <outlet property="periodSegmentedControl" destination="698-6X-oDp" id="rzJ-fc-N6Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
