@@ -10,9 +10,10 @@ import UIKit
 
 class EntryTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var sumLabel: UILabel!
     @IBOutlet weak var signImageView: UIImageView!
+    @IBOutlet weak var sumLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

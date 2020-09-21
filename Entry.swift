@@ -46,6 +46,7 @@ struct MyDate{
         
         let dayDistance = self.day - currentDate.day
         let monthDistance = self.month - currentDate.month
+        let yearDistance = self.year - currentDate.year
         
         if dayDistance == 0 && monthDistance == 0{
             result = "Сегодня"
@@ -64,6 +65,9 @@ struct MyDate{
                 result += "\(self.month)"
             } else {
                 result += "0\(self.month)"
+            }
+            if yearDistance != 0{
+                result += "/\(self.year)"
             }
         }
         

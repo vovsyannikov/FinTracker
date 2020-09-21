@@ -90,7 +90,7 @@ class ViewController: UIViewController {
         
 //        testInit()
         entries = readFromRealm()
-        print(entries)
+        sortEntries()
     }
     
     // MARK: prepare for segue
@@ -129,6 +129,12 @@ class ViewController: UIViewController {
         return result!
     }
     
+    func sortEntries(){
+        entries.sort { (first, second) -> Bool in
+            first.date < second.date
+        }
+    }
+    
 }
 
 // MARK: ext EntryDetailDelegate
@@ -136,50 +142,21 @@ extension ViewController: EntryDetailDelegate {
     // Обновление имеющихся ячеек
     func updateCell(for entry: Entry, at index: Int) {
         updateRealm(entry: entries[index], with: entry)
+        sortEntries()
         entriesTableView.reloadData()
     }
     // Создание новой ячейки
     func createCell(for entry: Entry) {
         writeToRealm(from: entry)
+        sortEntries()
         entriesTableView.reloadData()
     }
 }
 
 // MARK: ext TableView
 extension ViewController: UITableViewDataSource, UITableViewDelegate{
-    
-    //MARK: Number of Sections (offline)
-    //    func numberOfSections(in tableView: UITableView) -> Int {
-    //        var numOfSections = 0
-    //        var foundSections: [String] = []
-    //
-    //        for entry in entries {
-    //            let formattedDateString = entry.formattedDate()
-    //            if !foundSections.contains(formattedDateString) {
-    //                numOfSections += 1
-    //                foundSections.append(formattedDateString)
-    //            }
-    //        }
-    //        return numOfSections
-    //    }
-    //
-    //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    //        return entries[section].formattedDate()
-    //    }
-    
     //MARK: Number of rows in section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        var count = 0
-        //        var foundEntries: [String] = []
-        //
-        //        for entry in entries {
-        //            let formattedDateString = "\(entry.formattedDate().day)/\(entry.formattedDate().month)/\(entry.formattedDate().year)"
-        //            if !foundEntries.contains(formattedDateString){
-        //                count += 1
-        //                foundEntries.append(formattedDateString)
-        //            }
-        //        }
-        
         return entries.count
     }
     
@@ -192,6 +169,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
         
         cell.nameLabel.text = entry.name
         cell.sumLabel.text = costToString(from: entry.cost) + " ₽"
+        cell.dateLabel.text = entry.myDate.getDate()
         
         switch entry.type {
         case .income: do {
