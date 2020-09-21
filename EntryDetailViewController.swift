@@ -38,8 +38,6 @@ class EntryDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(entry.category, entry.typeString)
-        
         // Изменение заголовка карточки записи на Приход/Расход
         changeTitleLabel(to: entry.isPositive())
         
@@ -155,7 +153,7 @@ class EntryDetailViewController: UIViewController {
         
         switch isNew {
         case true: delegate?.createCell(for: newEntry)
-        case false: delegate?.update(entry: self.entry, with: newEntry)
+        case false: delegate?.update(entry: entry, with: newEntry)
         }
         dismiss(animated: true, completion: nil)
     }

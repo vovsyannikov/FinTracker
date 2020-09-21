@@ -78,7 +78,7 @@ struct MyDate{
 }
 
 class Entry: Object {
-    override var description: String {"\(name): \(type.rawValue) \(cost) \(date)"}
+    override var description: String {"\(name): \(type.rawValue) \(cost) \(myDate.getDate())"}
     
     @objc dynamic var name = ""
     @objc dynamic var cost = 0.0
@@ -93,10 +93,10 @@ class Entry: Object {
         return result!
     }
     @objc dynamic var date = Date()
-    @objc dynamic var category = ""
     var myDate: MyDate { .init(from: date) }
     var type: EntryType { isPositive() ? .income : .outcome }
     @objc dynamic var typeString: String { type.rawValue }
+    @objc dynamic var category = ""
     
     func isPositive() -> Bool {
         return cost >= 0

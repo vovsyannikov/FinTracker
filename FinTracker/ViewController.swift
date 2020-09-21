@@ -16,17 +16,15 @@ class ViewController: UIViewController {
     
     var entries: [Entry] = []
     var cellEntries: [Entry] = []
+    var sentEntry = Entry()
     @IBOutlet weak var entriesTableView: UITableView!
     @IBOutlet weak var periodSegmentedControl: UISegmentedControl!
     
     // MARK: Realm funcs
     // Запись в Realm
-    func writeToRealm(_ entry: Entry, at index: Int = -1){
-        if index == -1{
-            entries.append(entry)
-        } else {
-            entries.insert(entry, at: index)
-        }
+    func writeToRealm(_ entry: Entry) {
+        
+        entries.append(entry)
         
         try! self.realm.write {
             self.realm.add(entry)
@@ -46,19 +44,20 @@ class ViewController: UIViewController {
     }
     // Удаление из Realm
     func deleteFromRealm(_ entry: Entry){
-        var entryToDelete: Int?
+        var entryIndexToDelete: Int?
+        var entryToDelete: Entry?
         for (index, el) in entries.enumerated() {
             if entry == el {
-                entryToDelete = index
+                entryIndexToDelete = index
             }
-        }
-        
-        if (entryToDelete != nil) {
-            entries.remove(at: entryToDelete!)
         }
         
         try! realm.write {
             realm.delete(entry)
+        }
+        
+        if (entryIndexToDelete != nil) {
+            entries.remove(at: entryIndexToDelete!)
         }
     }
     // Обновление записи в Realm
@@ -70,6 +69,8 @@ class ViewController: UIViewController {
     // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        entriesTableView.reloadData()
         
         // Тестовая функция для записи
         func testInit(){
@@ -89,8 +90,8 @@ class ViewController: UIViewController {
         
 //        testInit()
         entries = readFromRealm()
-        sortEntries()
         cellEntries = entries
+        sortEntries()
     }
     
     // MARK: prepare for segue
@@ -103,6 +104,10 @@ class ViewController: UIViewController {
                 
                 vc.isNew = false
                 vc.entry = entry
+                sentEntry.name = entry.name
+                sentEntry.cost = entry.cost
+                sentEntry.category = entry.category
+                sentEntry.date = entry.date
             }
         }
         if let vc = segue.destination as? EntryDetailViewController, segue.identifier == SegueIDs.createEntry.rawValue {
@@ -124,7 +129,7 @@ class ViewController: UIViewController {
     }
     
     func sortEntries(){
-        entries.sort { (first, second) -> Bool in
+        cellEntries.sort { (first, second) -> Bool in
             first.date < second.date
         }
     }
@@ -170,24 +175,27 @@ class ViewController: UIViewController {
         }
         default: break
         }
-        
         entriesTableView.reloadData()
     }
-    
 }
 
 // MARK: ext EntryDetailDelegate
 extension ViewController: EntryDetailDelegate {
     // Обновление имеющихся ячеек
     func update(entry oldEntry: Entry, with newEntry: Entry) {
+//        print(newEntry, oldEntry)
+//        for (index, obj) in realm.objects(Entry.self).enumerated(){
+//            print("Realm: \(obj)")
+//            print("Entry: \(entries[index])")
+//            print()
+//        }
+//        print(entryToDelete, sentEntry, oldEntry)
         updateRealm(entry: oldEntry, with: newEntry)
-        sortEntries()
         entriesTableView.reloadData()
     }
     // Создание новой ячейки
     func createCell(for entry: Entry) {
         writeToRealm(entry)
-        sortEntries()
         entriesTableView.reloadData()
     }
 }

@@ -35,7 +35,7 @@
                                                 <segue destination="FnT-nB-I93" kind="presentation" identifier="CreateEntry" id="cpH-VS-IHl"/>
                                             </connections>
                                         </button>
-                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="698-6X-oDp">
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="698-6X-oDp">
                                             <rect key="frame" x="5" y="15" width="357" height="31"/>
                                             <segments>
                                                 <segment title="Все"/>
