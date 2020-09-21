@@ -9,6 +9,16 @@
 import Foundation
 import UIKit
 
+//MARK: enum SegueIDs
+enum SegueIDs: String {
+    case createEntry = "CreateEntry"
+    case updateEntry = "EntryDetail"
+    case selectCategory = "CategorySelection"
+    case createNewCategory = "CreateNewCategory"
+    case showCategoryDetail = "CategoryDetail"
+}
+
+//MARK: enum IconNames
 enum IconNames: String, CaseIterable {
     case creditCard = "creditcard.fill"
     case house = "house.fill"
@@ -25,30 +35,20 @@ enum IconNames: String, CaseIterable {
     case phone = "phone.fill"
 }
 
-func getIconName(from index: Int) -> IconNames {
-    var result: IconNames?
+//MARK: getIconName from index
+func getIconName(from index: Int) -> String {
+    var result: String?
     
-    switch index {
-    case 0:  result = .creditCard
-    case 1:  result = .house
-    case 2:  result = .transport
-    case 3:  result = .food
-    case 4:  result = .entertainment
-    case 5:  result = .electronics
-    case 6:  result = .other
-        
-    case 7:  result = .pen
-    case 8:  result = .paperPlane
-    case 9:  result = .map
-    case 10: result = .envelope
-    case 11: result = .phone
-        
-    default: break
+    for (i, name) in IconNames.allCases.enumerated(){
+        if i == index {
+            result = name.rawValue
+        }
     }
     
     return result!
 }
 
+//MARK: enum EntryType
 enum EntryType: String, CaseIterable {
     case income = "Приход"
     
@@ -62,21 +62,20 @@ enum EntryType: String, CaseIterable {
     case outcome = "Расход"
 }
 
-func getEntryType(from index: Int) -> EntryType {
-    var result: EntryType?
-    switch index {
-    case 0: result = .income
-    case 1: result = .house
-    case 2: result = .transport
-    case 3: result = .food
-    case 4: result = .entertainment
-    case 5: result = .electronics
-    case 6: result = .other
-    default: break
+//MARK: getEntryType from index
+func getEntryType(from index: Int) -> String {
+    var result: String?
+    
+    for (i, type) in EntryType.allCases.enumerated(){
+        if i == index {
+            result = type.rawValue
+        }
     }
+    
     return result!
 }
 
+//MARK: My color pallete
 let myColors: (green: UIColor, red: UIColor) = (
     green: UIColor(red: 0, green: 0.5, blue: 0, alpha: 1),
     red: UIColor(red: 0.75, green: 0, blue: 0, alpha: 1)

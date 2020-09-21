@@ -8,6 +8,7 @@
 
 import UIKit
 
+//MARK: Entry Detail Delegate
 protocol EntryDetailDelegate {
     func updateCell(for entry: Entry, at index: Int)
     func createCell(for entry: Entry)
@@ -22,8 +23,8 @@ class EntryDetailViewController: UIViewController {
     var signIndex = 0
     var color = UIColor()
     var date = Date()
-    var cellIndex = 0
-    var buttonName = "Другое"
+    var cellIndex: Int = 0
+    var buttonName: String = EntryType.other.rawValue
     var isNew = false
     
     
@@ -39,6 +40,9 @@ class EntryDetailViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     
     @IBOutlet weak var pickerView: UIPickerView!
+    
+    
+    //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,6 +72,7 @@ class EntryDetailViewController: UIViewController {
         changeSelectedSegmentColor(to: signIndex)
     }
     
+    //MARK: Mutating functions
     func underlinedText(from input: String) -> NSAttributedString {
         let underlineAttribute = [NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
         let resultingString = NSAttributedString(string: input, attributes: underlineAttribute)
@@ -126,12 +131,14 @@ class EntryDetailViewController: UIViewController {
         }
     }
     
+    //MARK: action changeEntryType
     @IBAction func changeEntryType(_ sender: Any) {
         signIndex = signSegmentedControl.selectedSegmentIndex
         changeSelectedSegmentColor(to: signSegmentedControl.selectedSegmentIndex)
         changeTitleLabel(to: signSegmentedControl.selectedSegmentIndex)
     }
     
+    //MARK: action saveCell
     @IBAction func saveCell(_ sender: Any) {
         let entry = Entry()
         
@@ -163,8 +170,9 @@ class EntryDetailViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    //MARK: prepare(for segue)
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? CategoryViewController, segue.identifier == "CategorySelection" {
+        if let vc = segue.destination as? CategoryViewController, segue.identifier == SegueIDs.selectCategory.rawValue {
             vc.delegate = self
             vc.choosingCategory = true
         }
@@ -172,6 +180,7 @@ class EntryDetailViewController: UIViewController {
     
 }
 
+//MARK: ext CategoryDelegate
 extension EntryDetailViewController: CategoryDelegate{
     func getCategory(from cat: String) {
         buttonName = cat

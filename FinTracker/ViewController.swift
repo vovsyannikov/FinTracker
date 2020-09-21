@@ -96,7 +96,7 @@ class ViewController: UIViewController {
     // MARK: prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cell = sender as? EntryTableViewCell, let index = entriesTableView.indexPath(for: cell){
-            if let vc = segue.destination as? EntryDetailViewController, segue.identifier == "EntryDetail" {
+            if let vc = segue.destination as? EntryDetailViewController, segue.identifier == SegueIDs.updateEntry.rawValue {
                 vc.delegate = self
                 
                 let entry = entries[index.row]
@@ -111,7 +111,7 @@ class ViewController: UIViewController {
                 vc.buttonName = entry.category
             }
         }
-        if let vc = segue.destination as? EntryDetailViewController, segue.identifier == "CreateEntry" {
+        if let vc = segue.destination as? EntryDetailViewController, segue.identifier == SegueIDs.createEntry.rawValue {
             vc.delegate = self
             vc.isNew = true
         }
@@ -131,7 +131,7 @@ class ViewController: UIViewController {
     
 }
 
-// MARK: EntryDetailDelegate
+// MARK: ext EntryDetailDelegate
 extension ViewController: EntryDetailDelegate {
     // Обновление имеющихся ячеек
     func updateCell(for entry: Entry, at index: Int) {
@@ -145,8 +145,10 @@ extension ViewController: EntryDetailDelegate {
     }
 }
 
-// MARK: TODO - Sections
+// MARK: ext TableView
 extension ViewController: UITableViewDataSource, UITableViewDelegate{
+    
+    //MARK: Number of Sections (offline)
     //    func numberOfSections(in tableView: UITableView) -> Int {
     //        var numOfSections = 0
     //        var foundSections: [String] = []
@@ -164,7 +166,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
     //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     //        return entries[section].formattedDate()
     //    }
-    //
+    
+    //MARK: Number of rows in section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //        var count = 0
         //        var foundEntries: [String] = []
@@ -180,6 +183,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
         return entries.count
     }
     
+    //MARK: Cell for row at
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Entry") as! EntryTableViewCell
         
@@ -206,6 +210,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
         return cell
     }
     
+    // MARK: Editing style (deleting rows)
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         if editingStyle == .delete{
             
@@ -219,6 +224,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
         }
     }
     
+    // MARK: Did select row at
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }

@@ -15,15 +15,18 @@ class ChartsViewController: UIViewController {
     
     let pieChart = PieChartView()
     
+    // MARK: View did load
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    //MARK: View did appear
     override func viewDidAppear(_ animated: Bool) {
         entries = ViewController.shared.readFromRealm()
         updateChart()
     }
     
+    //MARK: Update chart
     func updateChart(){
         pieChart.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.width)
         pieChart.center = view.center

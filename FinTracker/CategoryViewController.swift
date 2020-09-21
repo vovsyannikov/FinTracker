@@ -9,10 +9,12 @@
 import UIKit
 import RealmSwift
 
+//MARK: Category Delegate
 protocol CategoryDelegate {
     func getCategory(from cat: String)
 }
 
+//MARK: MyCategory class
 class MyCategory: Object {
     @objc dynamic var name = ""
     @objc dynamic var iconName = ""
@@ -33,6 +35,8 @@ class CategoryViewController: UIViewController {
     @IBOutlet weak var createCategoryButton: UIButton!
     
     @IBOutlet weak var categoriesTableView: UITableView!
+    
+    //MARK: View did load
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,7 +54,7 @@ class CategoryViewController: UIViewController {
             while tempCategories.count < availibaleCategories.count {
                 for cat in availibaleCategories {
                     if index < 6 {
-                        if cat.name == getEntryType(from: index).rawValue {
+                        if cat.name == getEntryType(from: index) {
                             tempCategories.append(cat)
                             index += 1
                         }
@@ -80,11 +84,6 @@ class CategoryViewController: UIViewController {
                 availibaleCategories.append(newItem(cat, at: &index))
             }
             sortCategories()
-            
-            let newCategory = MyCategory()
-            newCategory.name = "Тест"
-            newCategory.iconName = "sun.max"
-            availibaleCategories.append(newCategory)
         }
         
         testLoadCategories()
@@ -92,13 +91,19 @@ class CategoryViewController: UIViewController {
         
     }
     
+    //MARK: Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? NewCategoryViewController, segue.identifier == "CreateNewCategory" {
+        if let vc = segue.destination as? NewCategoryViewController, segue.identifier == SegueIDs.createNewCategory.rawValue {
+    
             vc.delegate = self
+        } else if let vc = segue.destination as? CategoryDetailViewController, segue.identifier == SegueIDs.showCategoryDetail.rawValue {
+            let cell = sender as! MyCategory
+            vc.text = cell.name
         }
     }
 }
 
+//MARK: ext New Category Delegate
 extension CategoryViewController: NewCategoryDelegate{
     func saveNewCategory(_ cat: MyCategory) {
         availibaleCategories.append(cat)
@@ -108,11 +113,14 @@ extension CategoryViewController: NewCategoryDelegate{
     
 }
 
+// MARK: ext TableView
 extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
+    //MARK: numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return availibaleCategories.count
     }
     
+    //MARK: cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Category") as! CategoryTableViewCell
         
@@ -131,13 +139,15 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    //MARK: didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "Category") as! CategoryTableViewCell
         if choosingCategory {
-            
             let cellEntryType = availibaleCategories[indexPath.row].name
             delegate?.getCategory(from: cellEntryType)
             dismiss(animated: true, completion: nil)
+        } else {
+            let cell = availibaleCategories[indexPath.row]
+            performSegue(withIdentifier: SegueIDs.showCategoryDetail.rawValue, sender: cell)
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }

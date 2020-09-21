@@ -8,6 +8,7 @@
 
 import UIKit
 
+//MARK: NewCategoryDelegate
 protocol NewCategoryDelegate {
     func saveNewCategory(_ cat: MyCategory)
 }
@@ -21,10 +22,14 @@ class NewCategoryViewController: UIViewController {
     var newCat = MyCategory()
     var delegate: NewCategoryDelegate?
     
+    
+    //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
+    
+    //MARK: act saveCategory
     
     @IBAction func saveCategory(_ sender: Any) {
         newCat.name = categoryNameTextField.text == "" ? "Новая категория" : categoryNameTextField.text!
@@ -35,31 +40,34 @@ class NewCategoryViewController: UIViewController {
     
 }
 
+//MARK: ext CollectionView
 extension NewCategoryViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
+    //MARK: numberOfItemsInSection
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return IconNames.allCases.count
+    }
+    //MARK: cellForItemAt
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IconView", for: indexPath) as! IconCollectionViewCell
+        
+        cell.iconImageView.image = UIImage(systemName: getIconName(from: indexPath.row))
+        cell.iconImageView.tintColor = myColors.red
+        
+        return cell
+    }
+
+    //MARK: didSelectItemAt
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        newCat.iconName = getIconName(from: indexPath.row).rawValue
+        newCat.iconName = getIconName(from: indexPath.row)
     }
     
+    //MARK: sizeForItemAt
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let h = self.view.bounds.height / 6
         let w = self.view.bounds.width / 6
         
         return CGSize(width: w, height: h)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return IconNames.allCases.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IconView", for: indexPath) as! IconCollectionViewCell
-        
-        cell.iconImageView.image = UIImage(systemName: getIconName(from: indexPath.row).rawValue)
-        cell.iconImageView.tintColor = myColors.red
-        
-        return cell
-    }
-    
     
 }

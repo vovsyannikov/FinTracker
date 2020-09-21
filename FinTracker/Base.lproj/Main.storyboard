@@ -300,11 +300,11 @@
             <objects>
                 <viewController id="Ksu-LJ-yQM" customClass="CategoryViewController" customModule="FinTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gc9-u1-nyb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vis-ok-UPW">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Cpy-2R-jMY">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
@@ -392,11 +392,43 @@
                         <outlet property="chooseLabel" destination="Wd0-dT-1t0" id="BBf-sf-Zfu"/>
                         <outlet property="createCategoryButton" destination="DtY-y1-kev" id="1Wv-8V-MWT"/>
                         <outlet property="headerView" destination="Cpy-2R-jMY" id="bwn-Vl-tZ7"/>
+                        <segue destination="UBi-N3-frQ" kind="show" identifier="CategoryDetail" id="0S8-S9-Cjh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tLf-ic-kIj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4535" y="477"/>
+            <point key="canvasLocation" x="4284" y="477"/>
+        </scene>
+        <!--Category Detail View Controller-->
+        <scene sceneID="3nU-8R-M2F">
+            <objects>
+                <viewController storyboardIdentifier="CategoryDetail" id="UBi-N3-frQ" customClass="CategoryDetailViewController" customModule="FinTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Q3Y-Nl-w2M">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTu-T9-uB1">
+                                <rect key="frame" x="186" y="437.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cZm-gf-vg6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="sTu-T9-uB1" firstAttribute="centerX" secondItem="Q3Y-Nl-w2M" secondAttribute="centerX" id="dI5-x1-f09"/>
+                            <constraint firstItem="sTu-T9-uB1" firstAttribute="centerY" secondItem="Q3Y-Nl-w2M" secondAttribute="centerY" id="sAl-S2-dij"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="th8-Dw-kbK"/>
+                    <connections>
+                        <outlet property="textLabel" destination="sTu-T9-uB1" id="GvG-j1-qCk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q7q-gh-31o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5061" y="477"/>
         </scene>
         <!--New Category View Controller-->
         <scene sceneID="Pk1-N6-5d7">
@@ -515,7 +547,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UPN-pu-Xhz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5526" y="477"/>
+            <point key="canvasLocation" x="5039" y="-252"/>
         </scene>
         <!--Сводка-->
         <scene sceneID="ltI-gQ-aKv">
@@ -576,7 +608,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4Qt-hp-FFo"/>
+        <segue reference="5K5-hj-Y5m"/>
         <segue reference="Rgb-45-Zrr"/>
     </inferredMetricsTieBreakers>
     <resources>
