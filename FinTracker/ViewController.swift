@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     // MARK: Realm funcs
     // Запись в Realm
-    func writeToRealm(from entry: Entry, at index: Int = -1){
+    func writeToRealm(_ entry: Entry, at index: Int = -1){
         if index == -1{
             entries.append(entry)
         } else {
@@ -64,7 +64,7 @@ class ViewController: UIViewController {
     // Обновление записи в Realm
     func updateRealm(entry: Entry, with newEntry: Entry) {
         deleteFromRealm(entry)
-        writeToRealm(from: newEntry)
+        writeToRealm(newEntry)
     }
     
     // MARK: viewDidLoad
@@ -85,9 +85,6 @@ class ViewController: UIViewController {
             entries[1].cost = -5_000
             entries[1].date = Date(timeIntervalSince1970: 0)
             entries[1].category = EntryType.transport.rawValue
-            
-            writeToRealm(from: entries[0])
-            writeToRealm(from: entries[1])
         }
         
 //        testInit()
@@ -102,16 +99,10 @@ class ViewController: UIViewController {
             if let vc = segue.destination as? EntryDetailViewController, segue.identifier == SegueIDs.updateEntry.rawValue {
                 vc.delegate = self
                 
-                let entry = entries[index.row]
+                let entry = cellEntries[index.row]
                 
                 vc.isNew = false
-                vc.signIndex = entry.isPositive() ? 0 : 1
-                vc.cellIndex = index.row
-                vc.name = entry.name
-                vc.cost = costToString(from: entry.cost)
-                vc.date = entry.date
-                vc.color = cell.sumLabel.textColor
-                vc.buttonName = entry.category
+                vc.entry = entry
             }
         }
         if let vc = segue.destination as? EntryDetailViewController, segue.identifier == SegueIDs.createEntry.rawValue {
@@ -188,14 +179,14 @@ class ViewController: UIViewController {
 // MARK: ext EntryDetailDelegate
 extension ViewController: EntryDetailDelegate {
     // Обновление имеющихся ячеек
-    func updateCell(for entry: Entry, at index: Int) {
-        updateRealm(entry: entries[index], with: entry)
+    func update(entry oldEntry: Entry, with newEntry: Entry) {
+        updateRealm(entry: oldEntry, with: newEntry)
         sortEntries()
         entriesTableView.reloadData()
     }
     // Создание новой ячейки
     func createCell(for entry: Entry) {
-        writeToRealm(from: entry)
+        writeToRealm(entry)
         sortEntries()
         entriesTableView.reloadData()
     }
@@ -213,7 +204,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "Entry") as! EntryTableViewCell
         
         let entry = cellEntries[indexPath.row]
-        print(entry)
         
         cell.nameLabel.text = entry.name
         cell.sumLabel.text = costToString(from: entry.cost) + " ₽"
@@ -240,7 +230,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         if editingStyle == .delete{
             
-            deleteFromRealm(entries[indexPath.row])
+            deleteFromRealm(cellEntries[indexPath.row])
             
             self.entriesTableView.beginUpdates()
             self.entriesTableView.deleteRows(at: [indexPath], with: .automatic)

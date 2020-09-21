@@ -10,7 +10,7 @@ import UIKit
 
 //MARK: Entry Detail Delegate
 protocol EntryDetailDelegate {
-    func updateCell(for entry: Entry, at index: Int)
+    func update(entry oldEntry: Entry, with newEntry: Entry)
     func createCell(for entry: Entry)
 }
 
@@ -18,15 +18,9 @@ class EntryDetailViewController: UIViewController {
     
     var delegate: EntryDetailDelegate?
     
-    var name = ""
-    var cost = ""
-    var signIndex = 0
-    var color = UIColor()
-    var date = Date()
-    var cellIndex: Int = 0
-    var buttonName: String = EntryType.other.rawValue
+    var entry = Entry()
     var isNew = false
-    
+    var buttonName = ""
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -39,37 +33,37 @@ class EntryDetailViewController: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    @IBOutlet weak var pickerView: UIPickerView!
-    
     
     //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(entry.category, entry.typeString)
+        
         // Изменение заголовка карточки записи на Приход/Расход
-        changeTitleLabel(to: signIndex)
+        changeTitleLabel(to: entry.isPositive())
         
         // Изменение названия
-        nameTextField.text = name
+        nameTextField.text = entry.name
         
         // Изменение знака Приход/Расход и стоимости
-        signSegmentedControl.selectedSegmentIndex = signIndex
-        changeSelectedSegmentColor(to: signIndex)
-        costTextField.text = cost
+        signSegmentedControl.selectedSegmentIndex = entry.isPositive() ? 0 : 1
+        changeSelectedSegmentColor(to: entry.isPositive())
+        costTextField.text = entry.cost == 0.0 ? "" : entry.costString
         
         // Установка правильной русской локализации datePicker
         datePicker.locale = Locale(identifier: "ru")
-        datePicker.date = date
+        datePicker.date = entry.date.advanced(by: -10800)
         datePicker.datePickerMode = .date
         datePicker.maximumDate = Date(timeIntervalSinceNow: 10800)
         
         // Установка кнопки категории
-        categoryButton.setAttributedTitle(underlinedText(from: "   \(buttonName)"), for: .normal)
+        categoryButton.setAttributedTitle(underlinedText(from: "   \(entry.category)"), for: .normal)
         categoryButton.layer.borderWidth = 0.5
         categoryButton.layer.borderColor = UIColor.gray.cgColor
         categoryButton.layer.cornerRadius = 5
         
-        changeSelectedSegmentColor(to: signIndex)
+        changeSelectedSegmentColor(to: entry.isPositive())
     }
     
     //MARK: Mutating functions
@@ -86,11 +80,10 @@ class EntryDetailViewController: UIViewController {
         return result
     }
     
-    func changeTitleLabel(to titleIndex: Int){
-        switch titleIndex {
-        case 0: self.titleLabel.text = "Приход"
-        case 1: self.titleLabel.text = "Расход"
-        default: break
+    func changeTitleLabel(to isPostive: Bool){
+        switch isPostive {
+        case true: self.titleLabel.text = "Приход"
+        case false: self.titleLabel.text = "Расход"
         }
         
     }
@@ -100,8 +93,7 @@ class EntryDetailViewController: UIViewController {
         let outcomeString = cat == EntryType.other.rawValue || cat == EntryType.income.rawValue
             ? "   \(EntryType.other.rawValue)"
             : "   \(cat)"
-        
-        switch signIndex {
+        switch signSegmentedControl.selectedSegmentIndex {
         case 0: do {
             categoryButton.setAttributedTitle(fixedText(from: incomeString), for: .normal)
             categoryButton.tintColor = UIColor.black
@@ -116,31 +108,29 @@ class EntryDetailViewController: UIViewController {
         }
     }
     
-    func changeSelectedSegmentColor(to colorIndex: Int){
-        switch colorIndex {
-        case 0: do{
+    func changeSelectedSegmentColor(to isPositive: Bool){
+        switch isPositive {
+        case true: do{
             signSegmentedControl.selectedSegmentTintColor = myColors.green
             changeCategoryButton(to: EntryType.income.rawValue)
         }
-        case 1: do {
+        case false: do {
             signSegmentedControl.selectedSegmentTintColor = myColors.red
-            changeCategoryButton(to: buttonName)
+            changeCategoryButton(to: entry.category)
         }
-        default:
-            break
         }
     }
     
     //MARK: action changeEntryType
     @IBAction func changeEntryType(_ sender: Any) {
-        signIndex = signSegmentedControl.selectedSegmentIndex
-        changeSelectedSegmentColor(to: signSegmentedControl.selectedSegmentIndex)
-        changeTitleLabel(to: signSegmentedControl.selectedSegmentIndex)
+        let signIndex = signSegmentedControl.selectedSegmentIndex == 0 ? true : false
+        changeSelectedSegmentColor(to: signIndex)
+        changeTitleLabel(to: signIndex)
     }
     
     //MARK: action saveCell
     @IBAction func saveCell(_ sender: Any) {
-        let entry = Entry()
+        let newEntry = Entry()
         
         func stringToCost(from str: String) -> Double{
             var resultString = ""
@@ -158,14 +148,14 @@ class EntryDetailViewController: UIViewController {
             return result
         }
         
-        entry.name = nameTextField.text == "" ? "Новая запись" : nameTextField.text!
-        entry.cost = stringToCost(from: costTextField.text == "" ? "0.0" : costTextField.text!)
-        entry.date = datePicker.date
-        entry.category = buttonName
+        newEntry.name = nameTextField.text == "" ? "Новая запись" : nameTextField.text!
+        newEntry.cost = stringToCost(from: costTextField.text == "" ? "0.0" : costTextField.text!)
+        newEntry.date = datePicker.date
+        newEntry.category = buttonName
         
         switch isNew {
-        case true: delegate?.createCell(for: entry)
-        case false: delegate?.updateCell(for: entry, at: cellIndex)
+        case true: delegate?.createCell(for: newEntry)
+        case false: delegate?.update(entry: self.entry, with: newEntry)
         }
         dismiss(animated: true, completion: nil)
     }

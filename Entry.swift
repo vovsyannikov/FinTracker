@@ -41,7 +41,7 @@ struct MyDate{
     // Получение презентации даты. Для ближайщих двух дней: "Сегодня" и "Завтра", для отсальных дд/мм
     func getDate() -> String{
         var result = ""
-        let currentDate = MyDate(from: Date(timeIntervalSinceNow: 10800))
+        let currentDate = MyDate(from: Date(timeIntervalSinceNow: 0))
         
         
         let dayDistance = self.day - currentDate.day
@@ -82,10 +82,20 @@ class Entry: Object {
     
     @objc dynamic var name = ""
     @objc dynamic var cost = 0.0
+    var costString: String {
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = " "
+        formatter.numberStyle = .decimal
+        
+        let costNumber = NSNumber(value: cost >= 0 ? cost : -cost)
+        let result = formatter.string(from: costNumber)
+        
+        return result!
+    }
     @objc dynamic var date = Date()
     @objc dynamic var category = ""
     var myDate: MyDate { .init(from: date) }
-    var type: EntryType { isPositive() ? .income : .outcome}
+    var type: EntryType { isPositive() ? .income : .outcome }
     @objc dynamic var typeString: String { type.rawValue }
     
     func isPositive() -> Bool {
