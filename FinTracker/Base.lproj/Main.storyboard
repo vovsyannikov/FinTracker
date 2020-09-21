@@ -317,7 +317,7 @@
                                             </constraints>
                                             <state key="normal" image="square.and.pencil" catalog="system"/>
                                             <connections>
-                                                <segue destination="0ht-rM-XeC" kind="presentation" id="FT7-8E-ZSb"/>
+                                                <segue destination="0ht-rM-XeC" kind="presentation" identifier="CreateNewCategory" id="FT7-8E-ZSb"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wd0-dT-1t0">
@@ -446,8 +446,8 @@
                                                         <constraint firstAttribute="width" secondItem="ZSM-dx-mqk" secondAttribute="height" multiplier="1:1" id="tZj-Id-idw"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Tym-YE-G3h">
-                                                    <rect key="frame" x="39" y="40.5" width="50" height="47.5"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tym-YE-G3h">
+                                                    <rect key="frame" x="39" y="39" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="UYW-AA-kwU"/>
                                                         <constraint firstAttribute="width" secondItem="Tym-YE-G3h" secondAttribute="height" multiplier="1:1" id="ija-4g-abI"/>
@@ -476,6 +476,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3G-7o-67m">
                                 <rect key="frame" x="168.5" y="738" width="77" height="30"/>
                                 <state key="normal" title="Сохранить"/>
+                                <connections>
+                                    <action selector="saveCategory:" destination="0ht-rM-XeC" eventType="touchUpInside" id="TbE-Jk-nJB"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Иконка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Isi-xE-Keh">
                                 <rect key="frame" x="178" y="177.5" width="58" height="21"/>
@@ -581,7 +584,6 @@
         <image name="chart.pie" catalog="system" width="128" height="121"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="minus.circle" catalog="system" width="128" height="121"/>
-        <image name="phone.fill" catalog="system" width="128" height="114"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <systemColor name="labelColor">

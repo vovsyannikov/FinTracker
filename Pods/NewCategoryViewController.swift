@@ -8,24 +8,37 @@
 
 import UIKit
 
+protocol NewCategoryDelegate {
+    func saveNewCategory(_ cat: MyCategory)
+}
+
 class NewCategoryViewController: UIViewController {
 
     @IBOutlet weak var categoryNameTextField: UITextField!
     @IBOutlet weak var iconsCollectionView: UICollectionView!
     @IBOutlet weak var saveCategoryButton: UIButton!
     
+    var newCat = MyCategory()
+    var delegate: NewCategoryDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
     
-
+    @IBAction func saveCategory(_ sender: Any) {
+        newCat.name = categoryNameTextField.text == "" ? "Новая категория" : categoryNameTextField.text!
+        print(newCat)
+        delegate?.saveNewCategory(newCat)
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 extension NewCategoryViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Selected \(indexPath.row): \(getIconName(from: indexPath.row))")
+        newCat.iconName = getIconName(from: indexPath.row).rawValue
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

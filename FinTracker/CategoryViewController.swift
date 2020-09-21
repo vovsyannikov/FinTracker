@@ -89,7 +89,22 @@ class CategoryViewController: UIViewController {
         
         testLoadCategories()
         print(availibaleCategories)
+        
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? NewCategoryViewController, segue.identifier == "CreateNewCategory" {
+            vc.delegate = self
+        }
+    }
+}
+
+extension CategoryViewController: NewCategoryDelegate{
+    func saveNewCategory(_ cat: MyCategory) {
+        availibaleCategories.append(cat)
+        categoriesTableView.reloadData()
+    }
+    
     
 }
 
@@ -117,7 +132,7 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Category") as! CategoryTableViewCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "Category") as! CategoryTableViewCell
         if choosingCategory {
             
             let cellEntryType = availibaleCategories[indexPath.row].name
