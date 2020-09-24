@@ -155,6 +155,8 @@ class EntryDetailViewController: UIViewController {
         case true: delegate?.createCell(for: newEntry)
         case false: delegate?.update(entry: entry, with: newEntry)
         }
+        
+        createData(for: newEntry)
         dismiss(animated: true, completion: nil)
     }
     

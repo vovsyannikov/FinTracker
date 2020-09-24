@@ -146,6 +146,14 @@ func deleteData(_ entry: Entry) {
     } catch let error {
         print("Error\(error)")
     }
+    
+    var indexToDelete: Int?
+    for (i, en) in allEntries.enumerated() {
+        if en == entry {
+            indexToDelete = i
+        }
+    }
+    allEntries.remove(at: indexToDelete!)
 }
 
 class Entry: CustomStringConvertible {

@@ -16,7 +16,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var entriesTableView: UITableView!
     @IBOutlet weak var periodSegmentedControl: UISegmentedControl!
     
-      
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        entriesTableView.reloadData()
+    }
+    
     // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +59,6 @@ class ViewController: UIViewController {
         
 //        testInit()
         retrieveData()
-//        createData(for: allEntries[0])
-//        deleteData(allEntries[0])
         cellEntries = allEntries
         sortEntries()
     }
@@ -120,6 +122,8 @@ class ViewController: UIViewController {
 extension ViewController: EntryDetailDelegate {
     // Обновление имеющихся ячеек
     func update(entry oldEntry: Entry, with newEntry: Entry) {
+        entriesTableView.reloadData()
+        
         var indexToReplace = 15
         for (index, el) in allEntries.enumerated(){
             if oldEntry == el {
@@ -163,6 +167,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         if editingStyle == .delete{
             
+            let entryToDelete = cellEntries[indexPath.row]
+            deleteData(entryToDelete)
+            cellEntries.remove(at: indexPath.row)
             
             self.entriesTableView.beginUpdates()
             self.entriesTableView.deleteRows(at: [indexPath], with: .automatic)
