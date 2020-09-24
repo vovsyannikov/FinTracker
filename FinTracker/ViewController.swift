@@ -27,6 +27,8 @@ class ViewController: UIViewController {
         func testInit(){
             allEntries.append(Entry())
             allEntries.append(Entry())
+            allEntries.append(Entry())
+            allEntries.append(Entry())
             
             allEntries[0].name = "Тестовое пополнение"
             allEntries[0].cost = 5_000.5
@@ -37,9 +39,21 @@ class ViewController: UIViewController {
             allEntries[1].cost = -5_000
             allEntries[1].date = Date(timeIntervalSince1970: 0)
             allEntries[1].category = EntryType.transport.rawValue
+            
+            
+            allEntries[2].name = "Тестовая покупка 2"
+            allEntries[2].cost = -12_020
+            allEntries[2].date = Date(timeIntervalSince1970: 0)
+            allEntries[2].category = EntryType.transport.rawValue
+            
+            
+            allEntries[3].name = "Тестовая покупка 3"
+            allEntries[3].cost = -5_000
+            allEntries[3].date = Date(timeIntervalSince1970: 0)
+            allEntries[3].category = EntryType.house.rawValue
         }
         
-//        testInit()
+        testInit()
         cellEntries = allEntries
         sortEntries()
     }
@@ -165,22 +179,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
         let entry = cellEntries[indexPath.row]
         
         cell.nameLabel.text = entry.name
-        cell.sumLabel.text = costToString(from: entry.cost) + " ₽"
+        cell.costLabel.text = costToString(from: entry.cost) + " ₽"
         cell.dateLabel.text = entry.myDate.getDate()
-        
-        switch entry.type {
-        case .income: do {
-            cell.signImageView.image = UIImage(systemName: "plus.circle")
-            cell.signImageView.tintColor = myColors.green
-            cell.sumLabel.textColor = myColors.green
-        }
-        case .outcome: do {
-            cell.signImageView.image = UIImage(systemName: "minus.circle")
-            cell.signImageView.tintColor = myColors.red
-            cell.sumLabel.textColor = myColors.red
-        }
-        default: break
-        }
+        cell.setSignImageView(with: entry.type)
         
         return cell
     }

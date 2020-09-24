@@ -4,7 +4,6 @@
 //
 //  Created by Виталий Овсянников on 18.09.2020.
 //  Copyright © 2020 Виталий Овсянников. All rights reserved.
-//
 
 import UIKit
 

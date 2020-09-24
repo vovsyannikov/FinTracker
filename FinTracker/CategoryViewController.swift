@@ -106,7 +106,7 @@ class CategoryViewController: UIViewController {
             vc.delegate = self
         } else if let vc = segue.destination as? CategoryDetailViewController, segue.identifier == SegueIDs.showCategoryDetail.rawValue {
             let cell = sender as! MyCategory
-            vc.text = cell.name
+            vc.currentCategory = cell
         }
     }
 }
