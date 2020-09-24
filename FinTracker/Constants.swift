@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-enum CoreDataAttributes: String{
+enum MyCoreDataAttributes: String {
+    case entryEntityName = "FinanceEntry"
     case name, date, category, cost
 }
 

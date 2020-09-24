@@ -6,7 +6,9 @@
 //  Copyright © 2020 Виталий Овсянников. All rights reserved.
 //
 
+import UIKit
 import Foundation
+import CoreData
 
 struct MyDate{
     var day = 00
@@ -77,6 +79,74 @@ struct MyDate{
 }
 
 var allEntries: [Entry] = []
+func createData(for entry: Entry) {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+    let managedContext = appDelegate.persistentContainer.viewContext
+    
+    let entryEntity = NSEntityDescription.entity(forEntityName: MyCoreDataAttributes.entryEntityName.rawValue, in: managedContext)!
+    
+    let task = NSManagedObject(entity: entryEntity, insertInto: managedContext)
+    task.setValue(entry.name, forKey: MyCoreDataAttributes.name.rawValue)
+    task.setValue(entry.cost, forKey: MyCoreDataAttributes.cost.rawValue)
+    task.setValue(entry.category, forKey: MyCoreDataAttributes.category.rawValue)
+    task.setValue(entry.date, forKey: MyCoreDataAttributes.date.rawValue)
+    
+    do {
+        try managedContext.save()
+    } catch let error {
+        print("Error \(error)")
+    }
+}
+func retrieveData() {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+    let managedContext = appDelegate.persistentContainer.viewContext
+    
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: MyCoreDataAttributes.entryEntityName.rawValue)
+    
+    do {
+        let result = try managedContext.fetch(fetchRequest)
+        for data in result as! [NSManagedObject] {
+            
+            let newEntry = Entry()
+            newEntry.name = data.value(forKey: MyCoreDataAttributes.name.rawValue) as! String
+            newEntry.cost = data.value(forKey: MyCoreDataAttributes.cost.rawValue) as! Double
+            newEntry.category = data.value(forKey: MyCoreDataAttributes.category.rawValue) as! String
+            newEntry.date = data.value(forKey: MyCoreDataAttributes.date.rawValue) as! Date
+            
+            print(newEntry)
+            allEntries.append(newEntry)
+        }
+        
+    } catch let error {
+        print("Error \(error)")
+    }
+}
+func deleteData(_ entry: Entry) {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+    let managedContext = appDelegate.persistentContainer.viewContext
+    
+    let deleteRequest = NSFetchRequest<NSFetchRequestResult>(entityName: MyCoreDataAttributes.entryEntityName.rawValue)
+    deleteRequest.predicate = NSPredicate(format: "\(MyCoreDataAttributes.name.rawValue) = %@", entry.name)
+    
+    do {
+        let deleteResult = try managedContext.fetch(deleteRequest)
+        for (i, res) in deleteResult.enumerated() {
+            print(i, res)
+        }
+        
+        let objectToDelete = deleteResult[0] as! NSManagedObject
+        managedContext.delete(objectToDelete)
+        
+        do {
+            try managedContext.save()
+        } catch let error {
+            print("Error\(error)")
+        }
+        
+    } catch let error {
+        print("Error\(error)")
+    }
+}
 
 class Entry: CustomStringConvertible {
     var description: String {"\(name): \(type.rawValue) \(cost) \(myDate.getDate())"}

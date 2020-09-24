@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 //MARK: Category Delegate
 protocol CategoryDelegate {

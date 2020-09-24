@@ -53,7 +53,10 @@ class ViewController: UIViewController {
             allEntries[3].category = EntryType.house.rawValue
         }
         
-        testInit()
+//        testInit()
+        retrieveData()
+//        createData(for: allEntries[0])
+//        deleteData(allEntries[0])
         cellEntries = allEntries
         sortEntries()
     }
