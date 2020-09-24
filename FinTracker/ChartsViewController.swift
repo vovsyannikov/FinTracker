@@ -35,8 +35,9 @@ class ChartsViewController: UIViewController {
                 }
                 categorizedEntries[entry.category]! += entry.isPositive() ? entry.cost : -entry.cost
             }
-            
-            let incomeEntry = PieChartDataEntry(value: categorizedEntries[EntryType.income.rawValue]!, label: EntryType.income.rawValue)
+            let incomeEntry = PieChartDataEntry(
+                value: categorizedEntries[EntryType.income.rawValue] == nil ? 0.0 : categorizedEntries[EntryType.income.rawValue]!,
+                label: EntryType.income.rawValue)
             
             result.append(incomeEntry)
             for (name, cost) in categorizedEntries {

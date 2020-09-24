@@ -11,7 +11,10 @@ import UIKit
 
 enum MyCoreDataAttributes: String {
     case entryEntityName = "FinanceEntry"
-    case name, date, category, cost
+    case entName, date, category, cost
+    
+    case categoryEntityName = "FinanceCategory"
+    case catName, iconName
 }
 
 enum DateSorting {
@@ -135,7 +138,6 @@ let myColors: (green: UIColor, red: UIColor) = (
 )
 
 
-typealias FinanceCategory = Dictionary<String, IconNames>
 let defaultCategories: Dictionary<EntryType, IconNames> = [
     .income: .creditCard,
     .house: .house,

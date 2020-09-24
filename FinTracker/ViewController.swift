@@ -44,15 +44,13 @@ class ViewController: UIViewController {
             allEntries[1].date = Date(timeIntervalSinceNow: -152153223)
             allEntries[1].category = EntryType.transport.rawValue
             
-            
             allEntries[2].name = "Тестовая покупка 2"
             allEntries[2].cost = -12_020
             allEntries[2].date = Date(timeIntervalSinceNow: -212412)
             allEntries[2].category = EntryType.transport.rawValue
             
-            
             allEntries[3].name = "Тестовая покупка 3"
-            allEntries[3].cost = -5_000
+            allEntries[3].cost = -7_500
             allEntries[3].date = Date(timeIntervalSinceNow: -10591251)
             allEntries[3].category = EntryType.house.rawValue
         }

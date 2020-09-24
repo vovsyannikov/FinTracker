@@ -86,7 +86,7 @@ func createData(for entry: Entry) {
     let entryEntity = NSEntityDescription.entity(forEntityName: MyCoreDataAttributes.entryEntityName.rawValue, in: managedContext)!
     
     let task = NSManagedObject(entity: entryEntity, insertInto: managedContext)
-    task.setValue(entry.name, forKey: MyCoreDataAttributes.name.rawValue)
+    task.setValue(entry.name, forKey: MyCoreDataAttributes.entName.rawValue)
     task.setValue(entry.cost, forKey: MyCoreDataAttributes.cost.rawValue)
     task.setValue(entry.category, forKey: MyCoreDataAttributes.category.rawValue)
     task.setValue(entry.date, forKey: MyCoreDataAttributes.date.rawValue)
@@ -108,7 +108,7 @@ func retrieveData() {
         for data in result as! [NSManagedObject] {
             
             let newEntry = Entry()
-            newEntry.name = data.value(forKey: MyCoreDataAttributes.name.rawValue) as! String
+            newEntry.name = data.value(forKey: MyCoreDataAttributes.entName.rawValue) as! String
             newEntry.cost = data.value(forKey: MyCoreDataAttributes.cost.rawValue) as! Double
             newEntry.category = data.value(forKey: MyCoreDataAttributes.category.rawValue) as! String
             newEntry.date = data.value(forKey: MyCoreDataAttributes.date.rawValue) as! Date
@@ -126,7 +126,7 @@ func deleteData(_ entry: Entry) {
     let managedContext = appDelegate.persistentContainer.viewContext
     
     let deleteRequest = NSFetchRequest<NSFetchRequestResult>(entityName: MyCoreDataAttributes.entryEntityName.rawValue)
-    deleteRequest.predicate = NSPredicate(format: "\(MyCoreDataAttributes.name.rawValue) = %@", entry.name)
+    deleteRequest.predicate = NSPredicate(format: "\(MyCoreDataAttributes.entName.rawValue) = %@", entry.name)
     
     do {
         let deleteResult = try managedContext.fetch(deleteRequest)

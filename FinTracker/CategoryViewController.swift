@@ -14,6 +14,8 @@ protocol CategoryDelegate {
     func getCategory(from cat: String)
 }
 
+var availibaleCategories: [MyCategory] = []
+
 //MARK: MyCategory class
 class MyCategory: CustomStringConvertible {
     var name = ""
@@ -21,6 +23,17 @@ class MyCategory: CustomStringConvertible {
     var icon: UIImage { UIImage(systemName: iconName)!}
     
     var description: String { "\(name): \(iconName)"}
+    
+    static func == (left: MyCategory, right: MyCategory) -> Bool {
+        var result = false
+        
+        if left.name == right.name &&
+            left.iconName == right.iconName {
+            result = true
+        }
+        
+        return result
+    }
 }
 
 class CategoryViewController: UIViewController {
@@ -28,7 +41,6 @@ class CategoryViewController: UIViewController {
     var choosingCategory = false
     var delegate: CategoryDelegate?
     
-    var availibaleCategories: [MyCategory] = []
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var createCategoryButton: UIButton!
     
@@ -38,24 +50,19 @@ class CategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if choosingCategory {
-            createCategoryButton.isHidden.toggle()
-        }
-        
         func sortCategories() {
             var tempCategories: [MyCategory] = []
             var index = choosingCategory ? 1 : 0
             
             func doesContain(_ cat: MyCategory, in categories: [MyCategory]) -> Bool {
                 for el in categories {
-                    if el.name == cat.name &&
-                        el.iconName == cat.iconName {
+                    if el == cat {
                         return true
                     }
                 }
                 return false
             }
-
+            
             while tempCategories.count < availibaleCategories.count {
                 for cat in availibaleCategories {
                     if index < 6 {
@@ -72,8 +79,8 @@ class CategoryViewController: UIViewController {
             }
             availibaleCategories = tempCategories
         }
-        func testLoadCategories() {
-            func newItem(_ item: (key: EntryType, value: IconNames), at index: inout Int) -> MyCategory {
+        func loadDefCategories() {
+            func newItem(_ item: (key: EntryType, value: IconNames)) -> MyCategory {
                 let newCategory = MyCategory()
                 
                 newCategory.name = item.key.rawValue
@@ -81,17 +88,17 @@ class CategoryViewController: UIViewController {
                 
                 return newCategory
             }
-            var index = 0
+            
             for cat in defaultCategories {
                 if choosingCategory {
                     if cat.key == .income { continue }
                 }
-                availibaleCategories.append(newItem(cat, at: &index))
+                availibaleCategories.append(newItem(cat))
             }
             sortCategories()
         }
         
-        testLoadCategories()
+        loadDefCategories()
         print(availibaleCategories)
         
     }
@@ -99,7 +106,7 @@ class CategoryViewController: UIViewController {
     //MARK: Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? NewCategoryViewController, segue.identifier == SegueIDs.createNewCategory.rawValue {
-    
+            
             vc.delegate = self
         } else if let vc = segue.destination as? CategoryDetailViewController, segue.identifier == SegueIDs.showCategoryDetail.rawValue {
             let cell = sender as! MyCategory
@@ -155,5 +162,26 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
             performSegue(withIdentifier: SegueIDs.showCategoryDetail.rawValue, sender: cell)
         }
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+        if editingStyle == .delete{
+
+            let error = UIAlertController(title: "Ошибка", message: "Нельзя удалить основную категорию", preferredStyle: .alert)
+            error.addAction(UIAlertAction(
+                                title: "OK",
+                                style: .cancel,
+                                handler: nil))
+            if indexPath.row < 7 {
+                self.present(error, animated: true, completion: nil)
+            } else {
+                self.categoriesTableView.beginUpdates()
+                self.categoriesTableView.deleteRows(at: [indexPath], with: .automatic)
+                self.categoriesTableView.endUpdates()
+
+                self.categoriesTableView.reloadData()
+            }
+        }
+
     }
 }
