@@ -3,22 +3,40 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0B87BBA66747A69184B9452D /* Pods_FinTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26202E08A3EEB41CE5E0D62A /* Pods_FinTracker.framework */; };
+		3C4232B9250F92AF0050A00E /* EntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4232B8250F92AF0050A00E /* EntryDetailViewController.swift */; };
+		3C5E538B25154D4000A1A2EA /* NewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E538A25154D4000A1A2EA /* NewCategoryViewController.swift */; };
+		3C5E538F2515504500A1A2EA /* IconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E538E2515504500A1A2EA /* IconCollectionViewCell.swift */; };
+		3C5E53942518F2F400A1A2EA /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E53932518F2F400A1A2EA /* CategoryDetailViewController.swift */; };
+		3C6EEC0E2513A75200ED11B9 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6EEC0D2513A75200ED11B9 /* CategoryTableViewCell.swift */; };
+		3C8D6D022513800B003462F4 /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8D6D012513800B003462F4 /* ChartsViewController.swift */; };
+		3C8D6D042513A561003462F4 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8D6D032513A561003462F4 /* CategoryViewController.swift */; };
 		3CC233AD250F68970084FE1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC233AC250F68970084FE1B /* AppDelegate.swift */; };
 		3CC233AF250F68970084FE1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC233AE250F68970084FE1B /* SceneDelegate.swift */; };
 		3CC233B1250F68970084FE1B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC233B0250F68970084FE1B /* ViewController.swift */; };
 		3CC233B4250F68970084FE1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CC233B2250F68970084FE1B /* Main.storyboard */; };
 		3CC233B6250F689A0084FE1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CC233B5250F689A0084FE1B /* Assets.xcassets */; };
 		3CC233B9250F689A0084FE1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CC233B7250F689A0084FE1B /* LaunchScreen.storyboard */; };
+		3CC233C1250F7AD00084FE1B /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC233C0250F7AD00084FE1B /* EntryTableViewCell.swift */; };
+		3CC233C3250F7F1A0084FE1B /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC233C2250F7F1A0084FE1B /* Entry.swift */; };
+		3CCD2EF525150E2100236BFF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCD2EF425150E2100236BFF /* Constants.swift */; };
+		3CE85FBF251932C8001A9CA1 /* Finances.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3CE85FBD251932C7001A9CA1 /* Finances.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		26202E08A3EEB41CE5E0D62A /* Pods_FinTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8C21BFC5AD11AE2601D76D /* Pods-FinTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinTracker.release.xcconfig"; path = "Target Support Files/Pods-FinTracker/Pods-FinTracker.release.xcconfig"; sourceTree = "<group>"; };
+		3C4232B8250F92AF0050A00E /* EntryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailViewController.swift; sourceTree = SOURCE_ROOT; };
+		3C5E538A25154D4000A1A2EA /* NewCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewCategoryViewController.swift; path = Pods/NewCategoryViewController.swift; sourceTree = SOURCE_ROOT; };
+		3C5E538E2515504500A1A2EA /* IconCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCollectionViewCell.swift; sourceTree = "<group>"; };
+		3C5E53932518F2F400A1A2EA /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
+		3C6EEC0D2513A75200ED11B9 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		3C8D6D012513800B003462F4 /* ChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
+		3C8D6D032513A561003462F4 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		3CC233A9250F68970084FE1B /* FinTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CC233AC250F68970084FE1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CC233AE250F68970084FE1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -27,6 +45,10 @@
 		3CC233B5250F689A0084FE1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3CC233B8250F689A0084FE1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3CC233BA250F689A0084FE1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CC233C0250F7AD00084FE1B /* EntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
+		3CC233C2250F7F1A0084FE1B /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = SOURCE_ROOT; };
+		3CCD2EF425150E2100236BFF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3CE85FBE251932C8001A9CA1 /* Finances.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Finances.xcdatamodel; sourceTree = "<group>"; };
 		7BB165F0387F7F03922E9E39 /* Pods-FinTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinTracker.debug.xcconfig"; path = "Target Support Files/Pods-FinTracker/Pods-FinTracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,13 +85,24 @@
 		3CC233AB250F68970084FE1B /* FinTracker */ = {
 			isa = PBXGroup;
 			children = (
-				3CC233AC250F68970084FE1B /* AppDelegate.swift */,
-				3CC233AE250F68970084FE1B /* SceneDelegate.swift */,
+				3CCD2EF425150E2100236BFF /* Constants.swift */,
+				3CC233C2250F7F1A0084FE1B /* Entry.swift */,
+				3CC233C0250F7AD00084FE1B /* EntryTableViewCell.swift */,
+				3C6EEC0D2513A75200ED11B9 /* CategoryTableViewCell.swift */,
+				3C5E538E2515504500A1A2EA /* IconCollectionViewCell.swift */,
 				3CC233B0250F68970084FE1B /* ViewController.swift */,
+				3C4232B8250F92AF0050A00E /* EntryDetailViewController.swift */,
+				3C8D6D012513800B003462F4 /* ChartsViewController.swift */,
+				3C8D6D032513A561003462F4 /* CategoryViewController.swift */,
+				3C5E53932518F2F400A1A2EA /* CategoryDetailViewController.swift */,
+				3C5E538A25154D4000A1A2EA /* NewCategoryViewController.swift */,
 				3CC233B2250F68970084FE1B /* Main.storyboard */,
 				3CC233B5250F689A0084FE1B /* Assets.xcassets */,
 				3CC233B7250F689A0084FE1B /* LaunchScreen.storyboard */,
 				3CC233BA250F689A0084FE1B /* Info.plist */,
+				3CC233AE250F68970084FE1B /* SceneDelegate.swift */,
+				3CC233AC250F68970084FE1B /* AppDelegate.swift */,
+				3CE85FBD251932C7001A9CA1 /* Finances.xcdatamodeld */,
 			);
 			path = FinTracker;
 			sourceTree = "<group>";
@@ -88,7 +121,6 @@
 				7BB165F0387F7F03922E9E39 /* Pods-FinTracker.debug.xcconfig */,
 				3A8C21BFC5AD11AE2601D76D /* Pods-FinTracker.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -121,7 +153,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1170;
-				LastUpgradeCheck = 1170;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Виталий Овсянников";
 				TargetAttributes = {
 					3CC233A8250F68970084FE1B = {
@@ -207,9 +239,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CC233C3250F7F1A0084FE1B /* Entry.swift in Sources */,
+				3C8D6D022513800B003462F4 /* ChartsViewController.swift in Sources */,
+				3CC233C1250F7AD00084FE1B /* EntryTableViewCell.swift in Sources */,
+				3C5E53942518F2F400A1A2EA /* CategoryDetailViewController.swift in Sources */,
+				3CE85FBF251932C8001A9CA1 /* Finances.xcdatamodeld in Sources */,
 				3CC233B1250F68970084FE1B /* ViewController.swift in Sources */,
+				3C8D6D042513A561003462F4 /* CategoryViewController.swift in Sources */,
+				3CCD2EF525150E2100236BFF /* Constants.swift in Sources */,
 				3CC233AD250F68970084FE1B /* AppDelegate.swift in Sources */,
+				3C4232B9250F92AF0050A00E /* EntryDetailViewController.swift in Sources */,
 				3CC233AF250F68970084FE1B /* SceneDelegate.swift in Sources */,
+				3C5E538B25154D4000A1A2EA /* NewCategoryViewController.swift in Sources */,
+				3C6EEC0E2513A75200ED11B9 /* CategoryTableViewCell.swift in Sources */,
+				3C5E538F2515504500A1A2EA /* IconCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +304,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -285,7 +329,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -321,6 +365,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -339,7 +384,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -409,6 +454,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3CE85FBD251932C7001A9CA1 /* Finances.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3CE85FBE251932C8001A9CA1 /* Finances.xcdatamodel */,
+			);
+			currentVersion = 3CE85FBE251932C8001A9CA1 /* Finances.xcdatamodel */;
+			path = Finances.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3CC233A1250F68970084FE1B /* Project object */;
 }
