@@ -25,14 +25,15 @@ class NewCategoryViewController: UIViewController {
     //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
     //MARK: act saveCategory
     
     @IBAction func saveCategory(_ sender: Any) {
         newCat.name = categoryNameTextField.text == "" ? "Новая категория" : categoryNameTextField.text!
-        print(newCat)
+        if newCat.iconName == "" {
+            newCat.iconName = getIconName(from: Int.random(in: 0...IconNames.allCases.count))
+        }
         delegate?.saveNewCategory(newCat)
         dismiss(animated: true, completion: nil)
     }
