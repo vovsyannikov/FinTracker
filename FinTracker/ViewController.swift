@@ -122,8 +122,6 @@ class ViewController: UIViewController {
 extension ViewController: EntryDetailDelegate {
     // Обновление имеющихся ячеек
     func update(entry oldEntry: Entry, with newEntry: Entry) {
-        entriesTableView.reloadData()
-        
         var indexToReplace = 15
         for (index, el) in allEntries.enumerated(){
             if oldEntry == el {
@@ -132,12 +130,16 @@ extension ViewController: EntryDetailDelegate {
         }
         allEntries.remove(at: indexToReplace)
         allEntries.insert(newEntry, at: indexToReplace)
+        cellEntries = allEntries
+        sortEntries()
         
         entriesTableView.reloadData()
     }
     // Создание новой ячейки
     func createCell(for entry: Entry) {
         allEntries.append(entry)
+        cellEntries = allEntries
+        sortEntries()
         entriesTableView.reloadData()
     }
 }
