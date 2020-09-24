@@ -13,6 +13,54 @@ enum CoreDataAttributes: String{
     case name, date, category, cost
 }
 
+enum DateSorting {
+    case all, year, month, week, day
+}
+
+func dateSort(_ entries: [Entry], by sortType: DateSorting) -> [Entry] {
+    var result: [Entry] = []
+    let currentDay = MyDate(from: Date(timeIntervalSinceNow: 10800))
+    switch sortType {
+    case .all:
+        result = entries
+    case .year: do {
+        for entry in entries {
+            if entry.myDate.year == currentDay.year {
+                result.append(entry)
+            }
+        }
+    }
+    case .month: do {
+        for entry in entries {
+            if entry.myDate.year == currentDay.year &&
+                entry.myDate.month == currentDay.month {
+                result.append(entry)
+            }
+        }
+    }
+    case .week: do{
+        for entry in entries {
+            if entry.myDate.year == currentDay.year &&
+                entry.myDate.month == currentDay.month &&
+                currentDay.day - entry.myDate.day <= 7{
+                result.append(entry)
+            }
+        }
+    }
+    case .day:do {
+        for entry in entries {
+            if entry.myDate.year == currentDay.year &&
+                entry.myDate.month == currentDay.month &&
+                entry.myDate.day == currentDay.day{
+                result.append(entry)
+            }
+        }
+    }
+    }
+    
+    return result
+}
+
 //MARK: enum SegueIDs
 enum SegueIDs: String {
     case createEntry = "CreateEntry"

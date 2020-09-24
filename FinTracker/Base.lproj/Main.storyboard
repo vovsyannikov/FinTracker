@@ -445,6 +445,9 @@
                                     <segment title="Неделя"/>
                                     <segment title="День"/>
                                 </segments>
+                                <connections>
+                                    <action selector="changeSorting:" destination="UBi-N3-frQ" eventType="valueChanged" id="o5g-yf-YL8"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JcZ-e1-gkO">
                                 <rect key="frame" x="0.0" y="140" width="414" height="582"/>
@@ -529,6 +532,7 @@
                     <connections>
                         <outlet property="categoriesTableView" destination="JcZ-e1-gkO" id="NTG-pj-zfG"/>
                         <outlet property="navItem" destination="th8-Dw-kbK" id="t0v-Rx-76v"/>
+                        <outlet property="periodSegmentControl" destination="WK8-Hk-sIc" id="tqW-Yd-khh"/>
                         <outlet property="sortingSegControl" destination="WK8-Hk-sIc" id="hLm-36-I6V"/>
                     </connections>
                 </viewController>

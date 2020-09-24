@@ -100,45 +100,15 @@ class ViewController: UIViewController {
     
     //MARK: Entry sorting
     @IBAction func sortTableView(_ sender: Any) {
-        
-        let currentDay = MyDate(from: Date(timeIntervalSinceNow: 10800))
-        cellEntries = []
-        switch periodSegmentedControl.selectedSegmentIndex{
-        case 0: cellEntries = allEntries
-        case 1: do {
-            for entry in allEntries {
-                if entry.myDate.year == currentDay.year {
-                    cellEntries.append(entry)
-                }
-            }
-        }
-        case 2: do {
-            for entry in allEntries {
-                if entry.myDate.year == currentDay.year && entry.myDate.month == currentDay.month {
-                    cellEntries.append(entry)
-                }
-            }
-        }
-        case 3: do {
-            for entry in allEntries {
-                if entry.myDate.year == currentDay.year &&
-                    entry.myDate.month == currentDay.month &&
-                    currentDay.day - entry.myDate.day <= 7{
-                    cellEntries.append(entry)
-                }
-            }
-        }
-        case 4: do {
-            for entry in allEntries {
-                if entry.myDate.year == currentDay.year &&
-                    entry.myDate.month == currentDay.month &&
-                    entry.myDate.day == currentDay.day{
-                    cellEntries.append(entry)
-                }
-            }
-        }
+        switch periodSegmentedControl.selectedSegmentIndex {
+        case 0: cellEntries = dateSort(allEntries, by: .all)
+        case 1: cellEntries = dateSort(allEntries, by: .year)
+        case 2: cellEntries = dateSort(allEntries, by: .month)
+        case 3: cellEntries = dateSort(allEntries, by: .week)
+        case 4: cellEntries = dateSort(allEntries, by: .day)
         default: break
         }
+        sortEntries()
         entriesTableView.reloadData()
     }
 }
