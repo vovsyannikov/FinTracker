@@ -28,8 +28,7 @@ class CategoryViewController: UIViewController {
     var delegate: CategoryDelegate?
     
     var availibaleCategories: [MyCategory] = []
-    @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var chooseLabel: UILabel!
+    @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var createCategoryButton: UIButton!
     
     @IBOutlet weak var categoriesTableView: UITableView!
@@ -40,9 +39,6 @@ class CategoryViewController: UIViewController {
         
         if choosingCategory {
             createCategoryButton.isHidden.toggle()
-            chooseLabel.text = "Выберете категорию"
-        } else {
-            chooseLabel.text = ""
         }
         
         func sortCategories() {

@@ -114,7 +114,8 @@ func == (left: Entry, right: Entry) -> Bool {
     if left.name == right.name &&
         left.myDate.getDate() == right.myDate.getDate() &&
         left.category == right.category &&
-        left.cost == right.cost {
+        left.cost == right.cost
+    {
         result = true
     }
     
