@@ -158,7 +158,7 @@ func deleteEntryData(_ entry: Entry) {
 }
 
 class Entry: CustomStringConvertible {
-    var description: String {"\(name): \(type.rawValue) \(cost) \(myDate.getDate())"}
+    var description: String {"\(name): \(category) \(cost) \(myDate.getDate())"}
     
     var name = ""
     

@@ -20,7 +20,7 @@ class EntryDetailViewController: UIViewController {
     
     var entry = Entry()
     var isNew = false
-    var buttonName = ""
+    var buttonName = "Выберете категорию"
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -56,7 +56,8 @@ class EntryDetailViewController: UIViewController {
         datePicker.maximumDate = Date(timeIntervalSinceNow: 10800)
         
         // Установка кнопки категории
-        categoryButton.setAttributedTitle(underlinedText(from: "   \(entry.category)"), for: .normal)
+        let textForCat = entry.category == "" ? buttonName : entry.category
+        categoryButton.setAttributedTitle(underlinedText(from: "   \(textForCat)"), for: .normal)
         categoryButton.layer.borderWidth = 0.5
         categoryButton.layer.borderColor = UIColor.gray.cgColor
         categoryButton.layer.cornerRadius = 5
@@ -124,6 +125,7 @@ class EntryDetailViewController: UIViewController {
         let signIndex = signSegmentedControl.selectedSegmentIndex == 0 ? true : false
         changeSelectedSegmentColor(to: signIndex)
         changeTitleLabel(to: signIndex)
+        changeCategoryButton(to: buttonName)
     }
     
     //MARK: action saveCell
@@ -149,7 +151,7 @@ class EntryDetailViewController: UIViewController {
         newEntry.name = nameTextField.text == "" ? "Новая запись" : nameTextField.text!
         newEntry.cost = stringToCost(from: costTextField.text == "" ? "0.0" : costTextField.text!)
         newEntry.date = datePicker.date
-        newEntry.category = buttonName
+        newEntry.category = buttonName != "" ? buttonName : EntryType.income.rawValue
         
         switch isNew {
         case true: delegate?.createCell(for: newEntry)
