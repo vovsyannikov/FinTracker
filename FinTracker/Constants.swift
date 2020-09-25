@@ -10,11 +10,13 @@ import Foundation
 import UIKit
 
 enum MyCoreDataAttributes: String {
+    case name
+    
     case entryEntityName = "FinanceEntry"
-    case entName, date, category, cost
+    case date, category, cost
     
     case categoryEntityName = "FinanceCategory"
-    case catName, iconName
+    case iconName
 }
 
 enum DateSorting {

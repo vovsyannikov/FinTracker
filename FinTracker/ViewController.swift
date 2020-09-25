@@ -56,7 +56,7 @@ class ViewController: UIViewController {
         }
         
 //        testInit()
-        retrieveData()
+        retrieveEntryData()
         cellEntries = allEntries
         sortEntries()
     }
@@ -168,7 +168,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
         if editingStyle == .delete{
             
             let entryToDelete = cellEntries[indexPath.row]
-            deleteData(entryToDelete)
+            deleteEntryData(entryToDelete)
             cellEntries.remove(at: indexPath.row)
             
             self.entriesTableView.beginUpdates()

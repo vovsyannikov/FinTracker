@@ -156,7 +156,7 @@ class EntryDetailViewController: UIViewController {
         case false: delegate?.update(entry: entry, with: newEntry)
         }
         
-        createData(for: newEntry)
+        createEntryData(for: newEntry)
         dismiss(animated: true, completion: nil)
     }
     

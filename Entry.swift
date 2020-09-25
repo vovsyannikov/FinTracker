@@ -79,14 +79,15 @@ struct MyDate{
 }
 
 var allEntries: [Entry] = []
-func createData(for entry: Entry) {
+
+func createEntryData(for entry: Entry) {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
     let managedContext = appDelegate.persistentContainer.viewContext
     
     let entryEntity = NSEntityDescription.entity(forEntityName: MyCoreDataAttributes.entryEntityName.rawValue, in: managedContext)!
     
     let task = NSManagedObject(entity: entryEntity, insertInto: managedContext)
-    task.setValue(entry.name, forKey: MyCoreDataAttributes.entName.rawValue)
+    task.setValue(entry.name, forKey: MyCoreDataAttributes.name.rawValue)
     task.setValue(entry.cost, forKey: MyCoreDataAttributes.cost.rawValue)
     task.setValue(entry.category, forKey: MyCoreDataAttributes.category.rawValue)
     task.setValue(entry.date, forKey: MyCoreDataAttributes.date.rawValue)
@@ -97,7 +98,7 @@ func createData(for entry: Entry) {
         print("Error \(error)")
     }
 }
-func retrieveData() {
+func retrieveEntryData() {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
     let managedContext = appDelegate.persistentContainer.viewContext
     
@@ -108,7 +109,7 @@ func retrieveData() {
         for data in result as! [NSManagedObject] {
             
             let newEntry = Entry()
-            newEntry.name = data.value(forKey: MyCoreDataAttributes.entName.rawValue) as! String
+            newEntry.name = data.value(forKey: MyCoreDataAttributes.name.rawValue) as! String
             newEntry.cost = data.value(forKey: MyCoreDataAttributes.cost.rawValue) as! Double
             newEntry.category = data.value(forKey: MyCoreDataAttributes.category.rawValue) as! String
             newEntry.date = data.value(forKey: MyCoreDataAttributes.date.rawValue) as! Date
@@ -121,12 +122,12 @@ func retrieveData() {
         print("Error \(error)")
     }
 }
-func deleteData(_ entry: Entry) {
+func deleteEntryData(_ entry: Entry) {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
     let managedContext = appDelegate.persistentContainer.viewContext
     
     let deleteRequest = NSFetchRequest<NSFetchRequestResult>(entityName: MyCoreDataAttributes.entryEntityName.rawValue)
-    deleteRequest.predicate = NSPredicate(format: "\(MyCoreDataAttributes.entName.rawValue) = %@", entry.name)
+    deleteRequest.predicate = NSPredicate(format: "\(MyCoreDataAttributes.name.rawValue) = %@", entry.name)
     
     do {
         let deleteResult = try managedContext.fetch(deleteRequest)
