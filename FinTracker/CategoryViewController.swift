@@ -251,6 +251,10 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
             if indexPath.row < 7 {
                 self.present(error, animated: true, completion: nil)
             } else {
+                
+                deleteCategoryData(availibaleCategories[indexPath.row])
+//                availibaleCategories.remove(at: indexPath.row)
+                
                 self.categoriesTableView.beginUpdates()
                 self.categoriesTableView.deleteRows(at: [indexPath], with: .automatic)
                 self.categoriesTableView.endUpdates()
