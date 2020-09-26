@@ -131,12 +131,19 @@ func deleteEntryData(_ entry: Entry) {
     
     do {
         let deleteResult = try managedContext.fetch(deleteRequest)
+        var objectToDelete: NSManagedObject?
         for (i, res) in deleteResult.enumerated() {
+            let ob = res as! FinanceEntry
             print(i, res)
+            if ob.name == entry.name &&
+                ob.cost == entry.cost &&
+                ob.category == entry.category &&
+                ob.date == entry.date {
+                objectToDelete = res as? NSManagedObject
+            }
         }
         
-        let objectToDelete = deleteResult[0] as! NSManagedObject
-        managedContext.delete(objectToDelete)
+        managedContext.delete(objectToDelete!)
         
         do {
             try managedContext.save()

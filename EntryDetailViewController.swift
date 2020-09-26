@@ -125,7 +125,7 @@ class EntryDetailViewController: UIViewController {
         let signIndex = signSegmentedControl.selectedSegmentIndex == 0 ? true : false
         changeSelectedSegmentColor(to: signIndex)
         changeTitleLabel(to: signIndex)
-        changeCategoryButton(to: buttonName)
+        changeCategoryButton(to: entry.category == "" ? buttonName : entry.category)
     }
     
     //MARK: action saveCell
