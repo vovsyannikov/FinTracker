@@ -138,6 +138,7 @@ extension ViewController: EntryDetailDelegate {
         allEntries.append(entry)
         cellEntries = allEntries
         sortEntries()
+        
         entriesTableView.reloadData()
     }
 }

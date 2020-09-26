@@ -174,8 +174,6 @@ class CategoryViewController: UIViewController {
         
         loadDefCategories()
         retrieveCategoryData()
-        print(availibaleCategories)
-        
     }
     
     //MARK: Prepare for segue

@@ -65,7 +65,6 @@ class ChartsViewController: UIViewController {
         }
         
         pieChart.frame = chartView.frame
-        
         view.addSubview(pieChart)
         
         let pieChartEntries = allEntries.isEmpty ? [PieChartDataEntry]() : initPieEntries()
