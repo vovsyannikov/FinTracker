@@ -321,14 +321,52 @@
                     <view key="view" contentMode="scaleToFill" id="Ro6-vn-bjv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="c5p-Hs-zBS">
+                                <rect key="frame" x="20" y="766.5" width="374" height="26.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ваш баланс" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDu-bd-eeD">
+                                        <rect key="frame" x="0.0" y="2" width="105" height="23"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlt-YM-2kP">
+                                        <rect key="frame" x="125" y="0.0" width="249" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zSZ-i4-Tbr">
+                                <rect key="frame" x="0.0" y="241" width="414" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="zSZ-i4-Tbr" secondAttribute="height" multiplier="1:1" id="iGx-Oz-WnY"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="CuE-7Y-thp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CuE-7Y-thp" firstAttribute="trailing" secondItem="c5p-Hs-zBS" secondAttribute="trailing" constant="20" id="06M-87-vI3"/>
+                            <constraint firstItem="zSZ-i4-Tbr" firstAttribute="centerX" secondItem="Ro6-vn-bjv" secondAttribute="centerX" id="7EN-sK-VPe"/>
+                            <constraint firstItem="c5p-Hs-zBS" firstAttribute="leading" secondItem="CuE-7Y-thp" secondAttribute="leading" constant="20" id="A1c-g8-26L"/>
+                            <constraint firstItem="zSZ-i4-Tbr" firstAttribute="leading" secondItem="CuE-7Y-thp" secondAttribute="leading" id="BEo-Um-dTK"/>
+                            <constraint firstItem="CuE-7Y-thp" firstAttribute="trailing" secondItem="zSZ-i4-Tbr" secondAttribute="trailing" id="BMt-qt-bIu"/>
+                            <constraint firstItem="CuE-7Y-thp" firstAttribute="bottom" secondItem="c5p-Hs-zBS" secondAttribute="bottom" constant="20" id="lx6-4a-vWQ"/>
+                            <constraint firstItem="zSZ-i4-Tbr" firstAttribute="centerY" secondItem="Ro6-vn-bjv" secondAttribute="centerY" id="ysg-Ld-dsb"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="График средств" id="fu6-D3-IOq"/>
+                    <connections>
+                        <outlet property="balanceLabel" destination="hlt-YM-2kP" id="a5d-jZ-HO4"/>
+                        <outlet property="chartView" destination="zSZ-i4-Tbr" id="Pko-hW-jgH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VYP-ld-l5k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1887" y="-252"/>
+            <point key="canvasLocation" x="1886.9565217391305" y="-252.45535714285714"/>
         </scene>
         <!--Категории-->
         <scene sceneID="lLZ-Dg-iW1">

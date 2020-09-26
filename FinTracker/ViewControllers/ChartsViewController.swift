@@ -11,6 +11,8 @@ import Charts
 
 class ChartsViewController: UIViewController {
     
+    @IBOutlet weak var balanceLabel: UILabel!
+    @IBOutlet weak var chartView: UIView!
     let pieChart = PieChartView()
     
     // MARK: View did load
@@ -20,7 +22,17 @@ class ChartsViewController: UIViewController {
     
     //MARK: View did appear
     override func viewDidAppear(_ animated: Bool) {
+        updateBalance()
         updateChart()
+    }
+    
+    func updateBalance(){
+        var balance = 0.0
+        for en in allEntries {
+            balance += en.cost
+        }
+        balanceLabel.text = "\(balance)"
+        balanceLabel.textColor = balance >= 0 ? myColors.green : myColors.red
     }
     
     //MARK: Update chart
@@ -52,8 +64,8 @@ class ChartsViewController: UIViewController {
             return result
         }
         
-        pieChart.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.width)
-        pieChart.center = view.center
+        pieChart.frame = chartView.frame
+        
         view.addSubview(pieChart)
         
         let pieChartEntries = allEntries.isEmpty ? [PieChartDataEntry]() : initPieEntries()

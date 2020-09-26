@@ -164,7 +164,7 @@ class EntryDetailViewController: UIViewController {
         newEntry.name = nameTextField.text == "" ? newEntryName() : nameTextField.text!
         newEntry.cost = stringToCost(from: costTextField.text == "" ? "0.0" : costTextField.text!)
         newEntry.date = datePicker.date
-        newEntry.category = buttonName != "" ? buttonName : EntryType.income.rawValue
+        newEntry.category = signSegmentedControl.selectedSegmentIndex == 0 ? EntryType.income.rawValue : buttonName
         
         switch isNew {
         case true: delegate?.createCell(for: newEntry)
