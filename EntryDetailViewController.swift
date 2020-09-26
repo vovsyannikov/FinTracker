@@ -179,3 +179,17 @@ extension EntryDetailViewController: CategoryDelegate{
         changeCategoryButton(to: cat)
     }
 }
+
+extension EntryDetailViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case nameTextField: do {
+            textField.resignFirstResponder()
+            costTextField.becomeFirstResponder()
+        }
+        case costTextField: textField.resignFirstResponder()
+        default: break
+        }
+        return true
+    }
+}
