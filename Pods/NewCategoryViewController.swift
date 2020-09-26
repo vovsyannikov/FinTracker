@@ -30,7 +30,22 @@ class NewCategoryViewController: UIViewController {
     //MARK: act saveCategory
     
     @IBAction func saveCategory(_ sender: Any) {
-        newCat.name = categoryNameTextField.text == "" ? "Новая категория" : categoryNameTextField.text!
+        func newCatName() -> String {
+            var newName = "Новая категория"
+            var newCatNames: [String] = []
+            for cat in availibaleCategories {
+                if cat.name == newName {
+                    newCatNames.append(newName)
+                }
+            }
+            if newCatNames.count > 0 {
+                newName += " \(newCatNames.count + 1)"
+            }
+            
+            return newName
+        }
+        
+        newCat.name = categoryNameTextField.text == "" ? newCatName() : categoryNameTextField.text!
         if newCat.iconName == "" {
             newCat.iconName = getIconName(from: Int.random(in: 0...IconNames.allCases.count))
         }

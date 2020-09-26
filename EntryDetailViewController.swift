@@ -147,8 +147,21 @@ class EntryDetailViewController: UIViewController {
             }
             return result
         }
-        
-        newEntry.name = nameTextField.text == "" ? "Новая запись" : nameTextField.text!
+        func newEntryName() -> String {
+            var emptyName = "Новая запись"
+            var emptyNamesArchive: [String] = []
+            for en in allEntries{
+                if en.name == "Новая запись" {
+                    emptyNamesArchive.append("\(emptyName) \(emptyNamesArchive.count)")
+                }
+            }
+            if emptyNamesArchive.count > 0 {
+                emptyName += " \(emptyNamesArchive.count+1)"
+            }
+            
+            return emptyName
+        }
+        newEntry.name = nameTextField.text == "" ? newEntryName() : nameTextField.text!
         newEntry.cost = stringToCost(from: costTextField.text == "" ? "0.0" : costTextField.text!)
         newEntry.date = datePicker.date
         newEntry.category = buttonName != "" ? buttonName : EntryType.income.rawValue
@@ -183,13 +196,16 @@ extension EntryDetailViewController: CategoryDelegate{
 extension EntryDetailViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
-        case nameTextField: do {
+        case nameTextField:
             textField.resignFirstResponder()
             costTextField.becomeFirstResponder()
-        }
-        case costTextField: textField.resignFirstResponder()
+            
+        case costTextField:
+            textField.resignFirstResponder()
+            
         default: break
         }
+        
         return true
     }
 }
