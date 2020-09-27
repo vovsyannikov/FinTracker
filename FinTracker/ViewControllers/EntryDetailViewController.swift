@@ -167,19 +167,24 @@ class EntryDetailViewController: UIViewController {
             return emptyName
         }
         
-        
-        newEntry.name = nameTextField.text == "" ? newEntryName() : nameTextField.text!
-        newEntry.cost = stringToCost(from: costTextField.text == "" ? "0.0" : costTextField.text!)
-        newEntry.date = datePicker.date
-        newEntry.category = signSegmentedControl.selectedSegmentIndex == 0 ? EntryType.income.rawValue : buttonName
-        
-        switch isNew {
-        case true: delegate?.createCell(for: newEntry)
-        case false: delegate?.update(entry: entry, with: newEntry)
+        let stringAlert = UIAlertController(title: "Ошибка", message: "В поле стоимости присутствуют буквы", preferredStyle: .alert)
+        stringAlert.addAction(UIAlertAction(title: "Исправить", style: .cancel, handler: nil))
+        if (Double(costTextField.text!) == nil) {
+            self.present(stringAlert, animated: true, completion: nil)
+        } else {
+            newEntry.name = nameTextField.text == "" ? newEntryName() : nameTextField.text!
+            newEntry.cost = stringToCost(from: costTextField.text == "" ? "0.0" : costTextField.text!)
+            newEntry.date = datePicker.date
+            newEntry.category = signSegmentedControl.selectedSegmentIndex == 0 ? EntryType.income.rawValue : buttonName
+            
+            switch isNew {
+            case true: delegate?.createCell(for: newEntry)
+            case false: delegate?.update(entry: entry, with: newEntry)
+            }
+            
+            createEntryData(for: newEntry)
+            dismiss(animated: true, completion: nil)
         }
-        
-        createEntryData(for: newEntry)
-        dismiss(animated: true, completion: nil)
     }
     
     //MARK: prepare(for segue)
