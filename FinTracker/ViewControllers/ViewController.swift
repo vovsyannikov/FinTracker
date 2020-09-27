@@ -51,18 +51,6 @@ class ViewController: UIViewController {
         }
     }
     
-    // Функция преобразования числа в строку
-    func costToString(from cost: Double) -> String{
-        let formatter = NumberFormatter()
-        formatter.groupingSeparator = " "
-        formatter.numberStyle = .decimal
-        
-        let costNumber = NSNumber(value: cost >= 0 ? cost : -cost)
-        let result = formatter.string(from: costNumber)
-        
-        return result!
-    }
-    
     func sortEntries(){
         cellEntries.sort { (first, second) -> Bool in
             first.date < second.date

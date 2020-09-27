@@ -31,7 +31,8 @@ class ChartsViewController: UIViewController {
         for en in allEntries {
             balance += en.cost
         }
-        balanceLabel.text = "\(balance)"
+        
+        balanceLabel.text = costToString(from: balance) + " ₽"
         balanceLabel.textColor = balance >= 0 ? myColors.green : myColors.red
     }
     

@@ -210,3 +210,15 @@ func == (left: Entry, right: Entry) -> Bool {
     
     return result
 }
+
+// Функция преобразования числа в строку
+func costToString(from cost: Double) -> String{
+    let formatter = NumberFormatter()
+    formatter.groupingSeparator = " "
+    formatter.numberStyle = .decimal
+    
+    let costNumber = NSNumber(value: cost >= 0 ? cost : -cost)
+    let result = formatter.string(from: costNumber)
+    
+    return result!
+}
