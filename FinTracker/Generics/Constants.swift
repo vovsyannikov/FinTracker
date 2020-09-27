@@ -140,13 +140,3 @@ let myColors: (green: UIColor, red: UIColor) = (
 )
 
 
-let defaultCategories: Dictionary<EntryType, IconNames> = [
-    .income: .creditCard,
-    .house: .house,
-    .transport: .transport,
-    .food: .food,
-    .entertainment: .entertainment,
-    .electronics: .electronics,
-    .other: .other
-]
-

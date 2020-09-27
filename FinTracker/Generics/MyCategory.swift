@@ -10,6 +10,17 @@ import Foundation
 import UIKit
 import CoreData
 
+
+let defaultCategories: [(name: EntryType, iconName: IconNames)] = [
+    (.income, .creditCard),
+    (.house, .house),
+    (.transport, .transport),
+    (.food, .food),
+    (.entertainment, .entertainment),
+    (.electronics, .electronics),
+    (.other, .other)
+]
+
 var availibaleCategories: [MyCategory] = []
 
 class MyCategory: CustomStringConvertible {
@@ -42,6 +53,8 @@ func createCategoryData(for cat: MyCategory) {
     task.setValue(cat.name, forKey: MyCoreDataAttributes.name.rawValue)
     task.setValue(cat.iconName, forKey: MyCoreDataAttributes.iconName.rawValue)
     
+    availibaleCategories.append(cat)
+    
     do {
         try managedContext.save()
     } catch let error {
@@ -54,6 +67,15 @@ func retrieveCategoryData() {
     
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: MyCoreDataAttributes.categoryEntityName.rawValue)
     
+    func defaultCategoryInit(){
+        for cat in defaultCategories {
+            let newCat = MyCategory()
+            newCat.name = cat.name.rawValue
+            newCat.iconName = cat.iconName.rawValue
+            availibaleCategories.append(newCat)
+        }
+    }
+    
     do {
         let result = try managedContext.fetch(fetchRequest)
         for data in result as! [NSManagedObject] {
@@ -62,7 +84,7 @@ func retrieveCategoryData() {
             newCategory.name = data.value(forKey: MyCoreDataAttributes.name.rawValue) as! String
             newCategory.iconName = data.value(forKey: MyCoreDataAttributes.iconName.rawValue) as! String
             
-            print(newCategory)
+            if availibaleCategories.count == 0 { defaultCategoryInit() }
             availibaleCategories.append(newCategory)
         }
         

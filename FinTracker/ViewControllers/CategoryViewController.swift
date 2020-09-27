@@ -18,6 +18,7 @@ class CategoryViewController: UIViewController {
     
     var choosingCategory = false
     var delegate: CategoryDelegate?
+    var categoriesToShow: [MyCategory] = []
     
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var createCategoryButton: UIButton!
@@ -28,56 +29,25 @@ class CategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        func sortCategories() {
-            var tempCategories: [MyCategory] = []
-            var index = choosingCategory ? 1 : 0
-            
-            func doesContain(_ cat: MyCategory, in categories: [MyCategory]) -> Bool {
-                for el in categories {
-                    if el == cat {
-                        return true
-                    }
-                }
-                return false
-            }
-            
-            while tempCategories.count < availibaleCategories.count {
-                for cat in availibaleCategories {
-                    if index < 6 {
-                        if cat.name == getEntryType(from: index) {
-                            tempCategories.append(cat)
-                            index += 1
-                        }
-                    } else {
-                        if !doesContain(cat, in: tempCategories){
-                            tempCategories.append(cat)
-                        }
-                    }
-                }
-            }
-            availibaleCategories = tempCategories
+        if categoriesToShow.count == 0 {
+            retrieveCategoryData()
         }
-        func loadDefCategories() {
-            func newItem(_ item: (key: EntryType, value: IconNames)) -> MyCategory {
-                let newCategory = MyCategory()
-                
-                newCategory.name = item.key.rawValue
-                newCategory.iconName = item.value.rawValue
-                
-                return newCategory
-            }
-            
-            for cat in defaultCategories {
-                if choosingCategory {
-                    if cat.key == .income { continue }
-                }
-                availibaleCategories.append(newItem(cat))
-            }
-            sortCategories()
+        switch choosingCategory {
+        case true: categoriesToShow = choosingCategoriesLoader()
+        case false: categoriesToShow = availibaleCategories
         }
         
-        loadDefCategories()
-        retrieveCategoryData()
+        print(categoriesToShow)
+    }
+    
+    func choosingCategoriesLoader() -> [MyCategory]{
+        var result: [MyCategory] = []
+        
+        for cat in availibaleCategories.dropFirst() {
+            result.append(cat)
+        }
+        
+        return result
     }
     
     //MARK: Prepare for segue
@@ -95,7 +65,6 @@ class CategoryViewController: UIViewController {
 //MARK: ext New Category Delegate
 extension CategoryViewController: NewCategoryDelegate{
     func saveNewCategory(_ cat: MyCategory) {
-        availibaleCategories.append(cat)
         createCategoryData(for: cat)
         categoriesTableView.reloadData()
     }
@@ -107,15 +76,15 @@ extension CategoryViewController: NewCategoryDelegate{
 extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
     //MARK: numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return availibaleCategories.count
+        return categoriesToShow.count
     }
     
     //MARK: cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Category") as! CategoryTableViewCell
         
-        let categoryName = availibaleCategories[indexPath.row].name
-        let categoryImage = availibaleCategories[indexPath.row].icon
+        let categoryName = categoriesToShow[indexPath.row].name
+        let categoryImage = categoriesToShow[indexPath.row].icon
         
         cell.nameLabel.text = categoryName
         cell.iconImageView.image = categoryImage
@@ -132,11 +101,11 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
     //MARK: didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         if choosingCategory {
-            let cellEntryType = availibaleCategories[indexPath.row].name
+            let cellEntryType = categoriesToShow[indexPath.row].name
             delegate?.getCategory(from: cellEntryType)
             dismiss(animated: true, completion: nil)
         } else {
-            let cell = availibaleCategories[indexPath.row]
+            let cell = categoriesToShow[indexPath.row]
             performSegue(withIdentifier: SegueIDs.showCategoryDetail.rawValue, sender: cell)
         }
         tableView.deselectRow(at: indexPath, animated: true)
@@ -155,7 +124,6 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
             } else {
                 
                 deleteCategoryData(availibaleCategories[indexPath.row])
-//                availibaleCategories.remove(at: indexPath.row)
                 
                 self.categoriesTableView.beginUpdates()
                 self.categoriesTableView.deleteRows(at: [indexPath], with: .automatic)
