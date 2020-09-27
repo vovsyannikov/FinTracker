@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     static var shared = ViewController()
     
     var cellEntries: [Entry] = []
-    var sentEntry = Entry()
+    
     @IBOutlet weak var entriesTableView: UITableView!
     @IBOutlet weak var periodSegmentedControl: UISegmentedControl!
     
@@ -27,36 +27,8 @@ class ViewController: UIViewController {
         
         entriesTableView.reloadData()
         
-        // Тестовая функция для записи
-        func testInit(){
-            allEntries.append(Entry())
-            allEntries.append(Entry())
-            allEntries.append(Entry())
-            allEntries.append(Entry())
-            
-            allEntries[0].name = "Тестовое пополнение"
-            allEntries[0].cost = 5_000.5
-            allEntries[0].date = Date(timeIntervalSinceNow: 0)
-            allEntries[0].category = EntryType.income.rawValue
-            
-            allEntries[1].name = "Тестовая покупка"
-            allEntries[1].cost = -5_000
-            allEntries[1].date = Date(timeIntervalSinceNow: -152153223)
-            allEntries[1].category = EntryType.transport.rawValue
-            
-            allEntries[2].name = "Тестовая покупка 2"
-            allEntries[2].cost = -12_020
-            allEntries[2].date = Date(timeIntervalSinceNow: -212412)
-            allEntries[2].category = EntryType.transport.rawValue
-            
-            allEntries[3].name = "Тестовая покупка 3"
-            allEntries[3].cost = -7_500
-            allEntries[3].date = Date(timeIntervalSinceNow: -10591251)
-            allEntries[3].category = EntryType.house.rawValue
-        }
-        
-//        testInit()
         retrieveEntryData()
+        
         cellEntries = allEntries
         sortEntries()
     }
@@ -71,10 +43,6 @@ class ViewController: UIViewController {
                 
                 vc.isNew = false
                 vc.entry = entry
-                sentEntry.name = entry.name
-                sentEntry.cost = entry.cost
-                sentEntry.category = entry.category
-                sentEntry.date = entry.date
             }
         }
         if let vc = segue.destination as? EntryDetailViewController, segue.identifier == SegueIDs.createEntry.rawValue {
@@ -120,14 +88,10 @@ class ViewController: UIViewController {
 extension ViewController: EntryDetailDelegate {
     // Обновление имеющихся ячеек
     func update(entry oldEntry: Entry, with newEntry: Entry) {
-        var indexToReplace = 15
-        for (index, el) in allEntries.enumerated(){
-            if oldEntry == el {
-                indexToReplace = index
-            }
-        }
-        allEntries.remove(at: indexToReplace)
-        allEntries.insert(newEntry, at: indexToReplace)
+        
+        deleteEntryData(oldEntry)
+        createEntryData(for: newEntry)
+        
         cellEntries = allEntries
         sortEntries()
         
@@ -135,7 +99,8 @@ extension ViewController: EntryDetailDelegate {
     }
     // Создание новой ячейки
     func createCell(for entry: Entry) {
-        allEntries.append(entry)
+        createEntryData(for: entry)
+        
         cellEntries = allEntries
         sortEntries()
         

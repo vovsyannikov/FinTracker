@@ -136,18 +136,27 @@ class EntryDetailViewController: UIViewController {
     //MARK: action saveCell
     @IBAction func saveCell(_ sender: Any) {
         let newEntry = Entry()
+        let stringAlert = UIAlertController(title: "Ошибка", message: "В поле стоимости присутствуют буквы", preferredStyle: .alert)
+        stringAlert.addAction(UIAlertAction(title: "Исправлю", style: .cancel, handler: nil))
         
-        func stringToCost(from str: String) -> Double{
+        func isDouble(_ str: String) -> (b: Bool, str: String) {
             var resultString = ""
             for c in str {
                 if c == " " { continue }
                 resultString.append(c)
             }
             
+            if (Double(resultString) != nil) {
+                return (true, resultString)
+            } else {
+                return (false, "")
+            }
+        }
+        func stringToCost(from str: String) -> Double{
             var result: Double = 0.0
             switch signSegmentedControl.selectedSegmentIndex{
-            case 0: result = Double(resultString)!
-            case 1: result = -Double(resultString)!
+            case 0: result = Double(str)!
+            case 1: result = -Double(str)!
             default: break
             }
             return result
@@ -167,13 +176,10 @@ class EntryDetailViewController: UIViewController {
             return emptyName
         }
         
-        let stringAlert = UIAlertController(title: "Ошибка", message: "В поле стоимости присутствуют буквы", preferredStyle: .alert)
-        stringAlert.addAction(UIAlertAction(title: "Исправить", style: .cancel, handler: nil))
-        if (Double(costTextField.text!) == nil) {
-            self.present(stringAlert, animated: true, completion: nil)
-        } else {
+        if isDouble(costTextField.text!).b {
+            let costString = isDouble(costTextField.text!).str
             newEntry.name = nameTextField.text == "" ? newEntryName() : nameTextField.text!
-            newEntry.cost = stringToCost(from: costTextField.text == "" ? "0.0" : costTextField.text!)
+            newEntry.cost = stringToCost(from: costString)
             newEntry.date = datePicker.date
             newEntry.category = signSegmentedControl.selectedSegmentIndex == 0 ? EntryType.income.rawValue : buttonName
             
@@ -182,9 +188,11 @@ class EntryDetailViewController: UIViewController {
             case false: delegate?.update(entry: entry, with: newEntry)
             }
             
-            createEntryData(for: newEntry)
             dismiss(animated: true, completion: nil)
+        } else {
+            self.present(stringAlert, animated: true, completion: nil)
         }
+        
     }
     
     //MARK: prepare(for segue)

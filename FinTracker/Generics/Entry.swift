@@ -92,6 +92,8 @@ func createEntryData(for entry: Entry) {
     task.setValue(entry.category, forKey: MyCoreDataAttributes.category.rawValue)
     task.setValue(entry.date, forKey: MyCoreDataAttributes.date.rawValue)
     
+    allEntries.append(entry)
+    
     do {
         try managedContext.save()
     } catch let error {
@@ -101,6 +103,8 @@ func createEntryData(for entry: Entry) {
 func retrieveEntryData() {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
     let managedContext = appDelegate.persistentContainer.viewContext
+    
+    allEntries = []
     
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: MyCoreDataAttributes.entryEntityName.rawValue)
     
@@ -114,7 +118,6 @@ func retrieveEntryData() {
             newEntry.category = data.value(forKey: MyCoreDataAttributes.category.rawValue) as! String
             newEntry.date = data.value(forKey: MyCoreDataAttributes.date.rawValue) as! Date
             
-            print(newEntry)
             allEntries.append(newEntry)
         }
         
