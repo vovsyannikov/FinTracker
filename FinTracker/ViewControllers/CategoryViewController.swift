@@ -66,6 +66,7 @@ class CategoryViewController: UIViewController {
 extension CategoryViewController: NewCategoryDelegate{
     func saveNewCategory(_ cat: MyCategory) {
         createCategoryData(for: cat)
+        categoriesToShow = availibaleCategories
         categoriesTableView.reloadData()
     }
     
@@ -124,6 +125,8 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
             } else {
                 
                 deleteCategoryData(availibaleCategories[indexPath.row])
+                categoriesToShow.remove(at: indexPath.row)
+                print(availibaleCategories)
                 
                 self.categoriesTableView.beginUpdates()
                 self.categoriesTableView.deleteRows(at: [indexPath], with: .automatic)

@@ -67,6 +67,8 @@ func retrieveCategoryData() {
     
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: MyCoreDataAttributes.categoryEntityName.rawValue)
     
+    availibaleCategories = []
+    
     func defaultCategoryInit(){
         for cat in defaultCategories {
             let newCat = MyCategory()
@@ -75,6 +77,7 @@ func retrieveCategoryData() {
             availibaleCategories.append(newCat)
         }
     }
+    defaultCategoryInit()
     
     do {
         let result = try managedContext.fetch(fetchRequest)
@@ -84,8 +87,9 @@ func retrieveCategoryData() {
             newCategory.name = data.value(forKey: MyCoreDataAttributes.name.rawValue) as! String
             newCategory.iconName = data.value(forKey: MyCoreDataAttributes.iconName.rawValue) as! String
             
-            if availibaleCategories.count == 0 { defaultCategoryInit() }
+            print(newCategory)
             availibaleCategories.append(newCategory)
+            
         }
         
     } catch let error {
