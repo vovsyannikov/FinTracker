@@ -48,8 +48,8 @@
 		3CC233B8250F689A0084FE1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3CC233BA250F689A0084FE1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CC233C0250F7AD00084FE1B /* EntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EntryTableViewCell.swift; path = FinTracker/Cells/EntryTableViewCell.swift; sourceTree = SOURCE_ROOT; };
-		3CC233C2250F7F1A0084FE1B /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Entry.swift; path = FinTracker/Entry.swift; sourceTree = SOURCE_ROOT; };
-		3CCD2EF425150E2100236BFF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = FinTracker/Constants.swift; sourceTree = SOURCE_ROOT; };
+		3CC233C2250F7F1A0084FE1B /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Entry.swift; path = FinTracker/Generics/Entry.swift; sourceTree = SOURCE_ROOT; };
+		3CCD2EF425150E2100236BFF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = FinTracker/Generics/Constants.swift; sourceTree = SOURCE_ROOT; };
 		3CE85FBE251932C8001A9CA1 /* Finances.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Finances.xcdatamodel; sourceTree = "<group>"; };
 		7BB165F0387F7F03922E9E39 /* Pods-FinTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinTracker.debug.xcconfig"; path = "Target Support Files/Pods-FinTracker/Pods-FinTracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,6 +66,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C27C419252080750022657B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3CC233B0250F68970084FE1B /* ViewController.swift */,
+				3C4232B8250F92AF0050A00E /* EntryDetailViewController.swift */,
+				3C8D6D012513800B003462F4 /* ChartsViewController.swift */,
+				3C8D6D032513A561003462F4 /* CategoryViewController.swift */,
+				3C5E53932518F2F400A1A2EA /* CategoryDetailViewController.swift */,
+				3C5E538A25154D4000A1A2EA /* NewCategoryViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3C27C41A252080910022657B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3CC233C0250F7AD00084FE1B /* EntryTableViewCell.swift */,
+				3C6EEC0D2513A75200ED11B9 /* CategoryTableViewCell.swift */,
+				3C5E538E2515504500A1A2EA /* IconCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		3C27C41C252080D40022657B /* Generics */ = {
+			isa = PBXGroup;
+			children = (
+				3CCD2EF425150E2100236BFF /* Constants.swift */,
+				3CC233C2250F7F1A0084FE1B /* Entry.swift */,
+				3C27C412251FD1DF0022657B /* MyCategory.swift */,
+			);
+			path = Generics;
+			sourceTree = "<group>";
+		};
 		3CC233A0250F68970084FE1B = {
 			isa = PBXGroup;
 			children = (
@@ -87,18 +120,9 @@
 		3CC233AB250F68970084FE1B /* FinTracker */ = {
 			isa = PBXGroup;
 			children = (
-				3CCD2EF425150E2100236BFF /* Constants.swift */,
-				3C27C412251FD1DF0022657B /* MyCategory.swift */,
-				3CC233C2250F7F1A0084FE1B /* Entry.swift */,
-				3CC233C0250F7AD00084FE1B /* EntryTableViewCell.swift */,
-				3C6EEC0D2513A75200ED11B9 /* CategoryTableViewCell.swift */,
-				3C5E538E2515504500A1A2EA /* IconCollectionViewCell.swift */,
-				3CC233B0250F68970084FE1B /* ViewController.swift */,
-				3C4232B8250F92AF0050A00E /* EntryDetailViewController.swift */,
-				3C8D6D012513800B003462F4 /* ChartsViewController.swift */,
-				3C8D6D032513A561003462F4 /* CategoryViewController.swift */,
-				3C5E53932518F2F400A1A2EA /* CategoryDetailViewController.swift */,
-				3C5E538A25154D4000A1A2EA /* NewCategoryViewController.swift */,
+				3C27C419252080750022657B /* ViewControllers */,
+				3C27C41A252080910022657B /* Cells */,
+				3C27C41C252080D40022657B /* Generics */,
 				3CC233B2250F68970084FE1B /* Main.storyboard */,
 				3CC233B5250F689A0084FE1B /* Assets.xcassets */,
 				3CC233B7250F689A0084FE1B /* LaunchScreen.storyboard */,

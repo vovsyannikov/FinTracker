@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 //MARK: Entry Detail Delegate
 protocol EntryDetailDelegate {
     func update(entry oldEntry: Entry, with newEntry: Entry)
@@ -165,6 +166,8 @@ class EntryDetailViewController: UIViewController {
             
             return emptyName
         }
+        
+        
         newEntry.name = nameTextField.text == "" ? newEntryName() : nameTextField.text!
         newEntry.cost = stringToCost(from: costTextField.text == "" ? "0.0" : costTextField.text!)
         newEntry.date = datePicker.date
